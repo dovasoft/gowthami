@@ -48,8 +48,8 @@ public class RegisterBaseDao {
 							register.getMobileNo(),register.getEmail(),
 							register.getRegType(),register.getRegId()
 							 });
-			System.out.println("update111==="+update);
-			System.out.println(sql);
+			//System.out.println("update111==="+update);
+			
 			if (update > 0) {
 				isUpdate = true;
 			}
@@ -69,8 +69,8 @@ public class RegisterBaseDao {
 					sql,
 					new Object[] {register.getPassword(),register.getEmail()
 							 });
-			System.out.println("update111==="+update);
-			System.out.println(sql);
+			//System.out.println("update111==="+update);
+			
 			if (update > 0) {
 				isUpdate = true;
 			}
@@ -87,7 +87,7 @@ public class RegisterBaseDao {
 		try {
 			String sql = "DELETE FROM register WHERE regId=?";
 			int delete = jdbcTemplate.update(sql, new Object[] { id });
-			System.out.println("delete row"+delete);
+			//System.out.println("delete row"+delete);
 			if (delete > 0) {
 				isDelete = true;
 			}
@@ -148,10 +148,10 @@ public class RegisterBaseDao {
 		List<Register> retlist = null;
 		try {
 			String sql = "SELECT * from register where email = ? and mobileNo =?";
-			System.out.println("query----"+sql);
+			//System.out.println("query----"+sql);
 			retlist = jdbcTemplate.query(sql, new Object[] {StringUtils.trim(sEmail),StringUtils.trim(sMobileNo)},new BeanPropertyRowMapper<Register>(Register.class));
 			
-			System.out.println("retlist----"+retlist.toString());
+			//System.out.println("retlist----"+retlist.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -162,16 +162,16 @@ public class RegisterBaseDao {
 		List<Register> finalList = null;  
 		
 		if(org.apache.commons.validator.EmailValidator.getInstance().isValid(sEmailOrMobileNo) ){
-			System.out.println("emailOrMobile==="+sEmailOrMobileNo);
+			//System.out.println("emailOrMobile==="+sEmailOrMobileNo);
 			String sql= "SELECT * FROM register where email = ? ";
-			System.out.println("sql===="+sql);
+			//System.out.println("sql===="+sql);
 			finalList =	 jdbcTemplate.query(sql, new Object [] {StringUtils.trim(sEmailOrMobileNo)}, new BeanPropertyRowMapper<Register>(Register.class));
-			System.out.println("finalList===="+finalList);
+			//System.out.println("finalList===="+finalList);
 		}else{
 			String sql= "SELECT * FROM register where mobileNo = ? ";
-			System.out.println("sql===="+sql);
+			//System.out.println("sql===="+sql);
 			finalList =	 jdbcTemplate.query(sql, new Object [] {StringUtils.trim(sEmailOrMobileNo)}, new BeanPropertyRowMapper<Register>(Register.class));
-			System.out.println("finalList===="+finalList);
+			//System.out.println("finalList===="+finalList);
 		   }
 		
 		/*if(finalList != null && finalList.size() == 1){

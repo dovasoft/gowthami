@@ -41,7 +41,7 @@ public class BillingInfoCartServiceImpl implements BillingInfoCartService {
 			lstBillingInfoCart = billingInfoCartDao.getAllBillInfoCartByBillId(billingInfoCart);
 		} catch (Exception e) {
 			objLogger.info("Exception in getAllBillInfoCartByBillId()" + e);
-			System.out.println("Exception in getAllBillInfoCartByBillId()");
+			//System.out.println("Exception in getAllBillInfoCartByBillId()");
 		}
 		return lstBillingInfoCart;
 	}
@@ -54,7 +54,7 @@ public class BillingInfoCartServiceImpl implements BillingInfoCartService {
 			lstBillingInfoCart = billingInfoCartDao.getAllBillInfoCartByNewBillId(sNewbillId);
 		} catch (Exception e) {
 			objLogger.info("Exception in getAllBillInfoCartByNewBillId()" + e);
-			System.out.println("Exception in getAllBillInfoCartByNewBillId()");
+			//System.out.println("Exception in getAllBillInfoCartByNewBillId()");
 		}
 		return lstBillingInfoCart;
 	}
@@ -104,7 +104,7 @@ public class BillingInfoCartServiceImpl implements BillingInfoCartService {
 			lstBillingInfoCart = billingInfoCartDao.getAllBillInfoByBillNo(billingInfoCart);
 		} catch (Exception e) {
 			objLogger.info("Exception in getAllBillInfoByBillNo()" + e);
-			System.out.println("Exception in getAllBillInfoByBillNo()");
+			//System.out.println("Exception in getAllBillInfoByBillNo()");
 		}
 		return lstBillingInfoCart;
 	}
@@ -118,7 +118,7 @@ public class BillingInfoCartServiceImpl implements BillingInfoCartService {
 		String sReturnVal = null;
 		try {
 			lstAutoIncrement = billingInfoCartDao.getAutoIncrement(sTableName);
-			System.out.println("lstAutoIncrement=="+lstAutoIncrement.size());
+			//System.out.println("lstAutoIncrement=="+lstAutoIncrement.size());
 			if (lstAutoIncrement != null && lstAutoIncrement.size() > 0) {
 				for (int i = 0; i < lstAutoIncrement.size(); i++) {
 					autoIncrement = lstAutoIncrement.get(i);
@@ -136,7 +136,7 @@ public class BillingInfoCartServiceImpl implements BillingInfoCartService {
 			}
 		} catch (Exception e) {
 			objLogger.info("Exception in getUpdateId()" + e);
-			System.out.println("Exception in getUpdateId()");
+			//System.out.println("Exception in getUpdateId()");
 		}
 		return sReturnVal;
 	}

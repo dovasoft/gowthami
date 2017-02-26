@@ -39,18 +39,15 @@ public class AWSS3Util {
 			s3client.putObject(requestObj);
 			finalUrl = "https://" + bucketName + ".s3.amazonaws.com/" + keyName;
 		} catch (AmazonServiceException ase) {
-			System.out.println("Caught an AmazonServiceException, which " + "means your request made it "
-					+ "to Amazon S3, but was rejected with an error response" + " for some reason.");
-			System.out.println("Error Message:    " + ase.getMessage());
-			System.out.println("HTTP Status Code: " + ase.getStatusCode());
-			System.out.println("AWS Error Code:   " + ase.getErrorCode());
-			System.out.println("Error Type:       " + ase.getErrorType());
-			System.out.println("Request ID:       " + ase.getRequestId());
+			
+			//System.out.println("Error Message:    " + ase.getMessage());
+			//System.out.println("HTTP Status Code: " + ase.getStatusCode());
+			//System.out.println("AWS Error Code:   " + ase.getErrorCode());
+			//System.out.println("Error Type:       " + ase.getErrorType());
+			//System.out.println("Request ID:       " + ase.getRequestId());
 		} catch (AmazonClientException ace) {
-			System.out.println("Caught an AmazonClientException, which " + "means the client encountered "
-					+ "an internal error while trying to " + "communicate with S3, "
-					+ "such as not being able to access the network.");
-			System.out.println("Error Message: " + ace.getMessage());
+			
+			//System.out.println("Error Message: " + ace.getMessage());
 		}
 		return finalUrl;
 	}
@@ -63,7 +60,7 @@ public class AWSS3Util {
 		String imgUrl = null;
 			keyName = CommonUtils.getAutoGenId();
 			byte[] bytes = file.getBytes();
-			System.out.println("keyName"+keyName);
+			//System.out.println("keyName"+keyName);
 			// Creating the directory to store file
 			String rootPath = System.getProperty("catalina.home");
 			File dir = new File(rootPath + File.separator + "tmpFiles");
@@ -76,7 +73,7 @@ public class AWSS3Util {
 			stream.write(bytes);
 			stream.close();
 			imgUrl = serverFile.getPath();
-			// System.out.println(file.getName());
+			// "/gowthami/file.getName());
 
 			// MultipartFile mf = (MultipartFile)request.getParameter("");
 

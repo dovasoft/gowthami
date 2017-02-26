@@ -40,11 +40,11 @@ public class LoginServiceImpl implements LoginService {
 		try{
 			register = loginInfoDao.getPersonalData(userName);
 			if(register != null && register.getPassword().equals(password)){
-				System.out.println("registerModel: "+register.toString());
+				//System.out.println("registerModel: "+register.toString());
 				return register;
 			}
 		}catch(Exception e){
-			System.out.println("Exception in BillingDetatilsCartServiceImpl validateUser()"+e);
+			//System.out.println("Exception in BillingDetatilsCartServiceImpl validateUser()"+e);
 			
 		}
 		

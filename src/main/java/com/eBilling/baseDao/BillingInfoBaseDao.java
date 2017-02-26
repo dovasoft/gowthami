@@ -31,12 +31,12 @@ public class BillingInfoBaseDao {
 			}
 			java.sql.Timestamp updatedDate = new java.sql.Timestamp(product
 					.getUpdatedDate().getTime());*/
-			String INSERT_SQL1 = "INSERT INTO billinginfo(billId,billNo,billDate,lrNo,lrDate,orderNo,orderDate,dispatchedBy,dispatchedDate,noOfPacks,termOfPayment,terms,name,totalAmount,tinNo,phone,address,discount,totalMrp,totalQuantity,totalRate,orderBy,payment,packSlipNo,netAmount) values (?, ?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String INSERT_SQL1 = "INSERT INTO billinginfo(billId,billNo,billDate,lrNo,lrDate,orderNo,orderDate,dispatchedBy,dispatchedDate,noOfPacks,termOfPayment,terms,name,totalAmount,tinNo,phone,address,discount,totalMrp,totalQuantity,totalRate,orderBy,payment,packSlipNo,netAmount,advance) values (?, ?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			System.out.println("INSERT_SQL1==="+INSERT_SQL1);
 			int insert = jdbcTemplate.update(
 				INSERT_SQL1,
 				new Object[] { 
-						billInfo.getBillId(),billInfo.getBillNo(),billInfo.getBillDate(),billInfo.getLrNo(),billInfo.getLrDate(),billInfo.getOrderNo(),billInfo.getOrderDate(),billInfo.getDispatchedBy(),billInfo.getDispatchedDate(),billInfo.getNoOfPacks(),billInfo.getTermOfPayment(),billInfo.getTerms(),billInfo.getName(),billInfo.getTotalAmount(),billInfo.getTinNo(),billInfo.getPhone(),billInfo.getAddress(),billInfo.getDiscount(),billInfo.getTotalMrp(),billInfo.getTotalQuantity(),billInfo.getTotalRate(),billInfo.getOrderBy(),billInfo.getPayment(),billInfo.getPackSlipNo(),billInfo.getNetAmount()});
+						billInfo.getBillId(),billInfo.getBillNo(),billInfo.getBillDate(),billInfo.getLrNo(),billInfo.getLrDate(),billInfo.getOrderNo(),billInfo.getOrderDate(),billInfo.getDispatchedBy(),billInfo.getDispatchedDate(),billInfo.getNoOfPacks(),billInfo.getTermOfPayment(),billInfo.getTerms(),billInfo.getName(),billInfo.getTotalAmount(),billInfo.getTinNo(),billInfo.getPhone(),billInfo.getAddress(),billInfo.getDiscount(),billInfo.getTotalMrp(),billInfo.getTotalQuantity(),billInfo.getTotalRate(),billInfo.getOrderBy(),billInfo.getPayment(),billInfo.getPackSlipNo(),billInfo.getNetAmount(),billInfo.getAdvance()});
 			System.out.println("insert==="+insert);		
 		if (insert > 0) {
 			//isSave = true;
@@ -110,9 +110,57 @@ public class BillingInfoBaseDao {
 	}
 
 	public List<BillingInfo> searchBillInfo(BillingInfo billingInfo) {
+		boolean bAnd = false;
+		
 	  try{
 		StringBuffer objStringBuffer = new StringBuffer();
-		objStringBuffer .append("SELECT * from billinginfo  where billNo like '"+billingInfo.getBillNo()+"%' or phone like '"+billingInfo.getPhone()+"%' or name like '"+billingInfo.getName()+"%'" );
+		 objStringBuffer .append("SELECT * from billinginfo ");
+			if (StringUtils.isNotEmpty(billingInfo.getBillNo())) {
+				if (bAnd) {
+					objStringBuffer.append(" and billNo like '" + billingInfo.getBillNo() + "%'");
+				} else {
+					objStringBuffer.append(" where  billNo like '" + billingInfo.getBillNo() + "%'");
+					bAnd = true;
+				}
+			}if (StringUtils.isNotEmpty(billingInfo.getName())) {
+				if (bAnd) {
+					objStringBuffer.append(" and name like '" + billingInfo.getName() + "%'");
+				} else {
+					objStringBuffer.append(" where  name like '" + billingInfo.getName() + "%'");
+					bAnd = true;
+				}
+			}if (StringUtils.isNotEmpty(billingInfo.getPhone())) {
+				if (bAnd) {
+					objStringBuffer.append(" and phone like '" + billingInfo.getPhone() + "%'");
+				} else {
+					objStringBuffer.append(" where  phone like '" + billingInfo.getPhone() + "%'");
+					bAnd = true;
+				}
+			}
+
+		/*if(StringUtils.isNotEmpty(billingInfo.getBillNo())){
+			//if(StringUtils.isNotEmpty(objStringBuffer)){
+				objStringBuffer .append("where ");
+		//	}
+			objStringBuffer .append("billNo like '"+billingInfo.getBillNo()+"%'");
+		}
+		if(StringUtils.isNotEmpty(billingInfo.getName()) ){
+			if(StringUtils.isNotEmpty(billingInfo.getBillNo())){
+				objStringBuffer .append("and ");
+			}else{
+				objStringBuffer .append("where ");
+			}
+			objStringBuffer .append(" name like '"+billingInfo.getName()+"%'");
+		}
+		if(StringUtils.isNotEmpty(billingInfo.getPhone())){
+			if(StringUtils.isNotEmpty(billingInfo.getBillNo()) || StringUtils.isNotEmpty(billingInfo.getName()) ){
+				objStringBuffer .append("and ");
+			}else{
+				objStringBuffer .append("where ");
+			}
+			objStringBuffer .append("phone like '"+billingInfo.getPhone()+"%'");
+		}*/
+		//objStringBuffer .append("SELECT * from billinginfo  where billNo like '"+billingInfo.getBillNo()+"%' or phone like '"+billingInfo.getPhone()+"%' or name like '"+billingInfo.getName()+"%'" );
 		String sql = objStringBuffer.toString();
 		System.out.println("dataaaaa==="+sql);
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<BillingInfo>(BillingInfo.class));

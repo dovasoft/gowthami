@@ -36,9 +36,7 @@ public class FileUpload extends HttpServlet {
         Part filePart = request.getPart("photo");
         if (filePart != null) {
             // prints out some information for debugging
-            System.out.println(filePart.getName());
-            System.out.println(filePart.getSize());
-            System.out.println(filePart.getContentType());
+            
              
             // obtains input stream of the upload file
             inputStream = filePart.getInputStream();

@@ -39,7 +39,7 @@ public class BillInfoController {
 	@RequestMapping(value = "/billInfoHomeTest")
 	public @ResponseBody String billInfoHome(HttpServletResponse objResponce,@RequestParam("billno") String sBillNo,HttpSession session, HttpServletRequest objRequest)
 			throws IOException {
-		System.out.println("From billInfoHome Home");
+		//System.out.println("From billInfoHome Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = "";
 		List<BillingDetails> listBillingDetails = null;
@@ -50,18 +50,20 @@ public class BillInfoController {
 		 BillingInfo existBillingInfo = null;
 		try {
 			//String sBillNo = data.getString("billNo");
-			System.out.println("bill controller====sBillNo====="+sBillNo);
+			//System.out.println("bill controller====sBillNo====="+sBillNo);
 			
 			billingInfo =new BillingInfo();
 			billingInfo.setBillId(sBillNo);
 			lstBillingInfo = objBillingInfoService.getAllBillInfoByBillNo(billingInfo);
-			System.out.println("lstBillingInfo==size===="+lstBillingInfo.size());
+			//System.out.println("lstBillingInfo==size===="+lstBillingInfo.size());
 			for(int i=0;i<lstBillingInfo.size();i++){
 				existBillingInfo =lstBillingInfo.get(i);
+				
+				//System.out.println("billDate---"+existBillingInfo.getBillDate());
 			}
 			// Getting product list by billId
 						listBillingDetails = billingDeteailsServicesImpl.getAllBillDetailsByBillNo(sBillNo);
-						System.out.println("listBillingDetails.size=="+listBillingDetails.size());
+						//System.out.println("listBillingDetails.size=="+listBillingDetails.size());
 						existBillingInfo.setListBillingDeteails(listBillingDetails);
 			
 			objJSON = new JSONObject();
@@ -70,7 +72,7 @@ public class BillInfoController {
 				objMapper = new ObjectMapper();
 				sJson = objMapper.writeValueAsString(lstBillingInfo);
 			}
-			System.out.println("sJson---"+sJson);
+			//System.out.println("sJson---"+sJson);
 			session.setAttribute("printUnBillVal", "");
 			session.setAttribute("printBillVal", "");
 			session.setAttribute("printBillVal", sJson);
@@ -90,7 +92,7 @@ public class BillInfoController {
 	@RequestMapping(value = "/unBillInfo")
 	public @ResponseBody String unBillInfo(HttpServletResponse objResponce,@RequestParam("billId") String sBillId,HttpSession session, HttpServletRequest objRequest)
 			throws IOException {
-		System.out.println("From billInfoHome Home");
+		//System.out.println("From billInfoHome Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = "";
 		List<BillingDetailsCart> listBillingDetailsCart = null;
@@ -101,19 +103,20 @@ public class BillInfoController {
 		 BillingInfoCart existBillingInfoCart = null;
 		try {
 			//String sBillNo = data.getString("billNo");
-			System.out.println("bill controller====sBillNo====="+sBillId);
+			//System.out.println("bill controller====sBillNo====="+sBillId);
 			
 			billingInfo =new BillingInfoCart();
 			billingInfo.setBillId(sBillId);
 			lstBillingInfoCart = objBillingInfoCartService.getAllBillInfoCartByBillId(billingInfo);
-			System.out.println("lstBillingInfo==size===="+lstBillingInfoCart.size());
+			//System.out.println("lstBillingInfo==size===="+lstBillingInfoCart.size());
 			for(int i=0;i<lstBillingInfoCart.size();i++){
 				existBillingInfoCart =lstBillingInfoCart.get(i);
+				
 			}
 			
 			// Getting product list by billId
 						listBillingDetailsCart = billingDetatilsCartService.getAllBillDetailsCartByBillId(sBillId);
-						System.out.println("listBillingDetails.size=="+listBillingDetailsCart.size());
+						//System.out.println("listBillingDetails.size=="+listBillingDetailsCart.size());
 						existBillingInfoCart.setListBillingInfoCart(listBillingDetailsCart);
 			
 			objJSON = new JSONObject();
@@ -122,7 +125,7 @@ public class BillInfoController {
 				objMapper = new ObjectMapper();
 				sJson = objMapper.writeValueAsString(existBillingInfoCart);
 			}
-			System.out.println("sJson---"+sJson);
+			//System.out.println("sJson---"+sJson);
 			session.setAttribute("printUnBillVal", "");
 			session.setAttribute("printBillVal", "");
 			session.setAttribute("printUnBillVal", sJson);
@@ -137,7 +140,7 @@ public class BillInfoController {
 	@RequestMapping(value = "/updateCart")
 	public @ResponseBody String updateCart(HttpServletResponse objResponce,@RequestParam("billId") String sBillId,HttpSession session, HttpServletRequest objRequest)
 			throws IOException {
-		System.out.println("From billInfoHome Home");
+		//System.out.println("From billInfoHome Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = "";
 		List<BillingDetails> listBillingDetails = null;
@@ -153,12 +156,12 @@ public class BillInfoController {
 		 List<BillingDetailsCart> listBillingDetailsCart = null;
 		try {
 			//String sBillNo = data.getString("billNo");
-			System.out.println("bill controller====sBillNo====="+sBillId);
+			//System.out.println("bill controller====sBillNo====="+sBillId);
 			
 			billingInfo =new BillingInfo();
 			billingInfo.setBillId(sBillId);
 			lstBillingInfo = objBillingInfoService.getAllBillInfoByBillNo(billingInfo);
-			System.out.println("lstBillingInfo==size===="+lstBillingInfo.size());
+			//System.out.println("lstBillingInfo==size===="+lstBillingInfo.size());
 			String sNewBillId =CommonUtils.getAutoGenId();
 			String sBillNo = objBillingInfoCartService.getUpdateId("billInfoCart");
 			for(int i=0;i<lstBillingInfo.size();i++){
@@ -190,9 +193,10 @@ public class BillInfoController {
 				billingInfoCart.setTotalMrp(existBillingInfo.getTotalMrp());
 				billingInfoCart.setTotalQuantity(existBillingInfo.getTotalQuantity());
 				billingInfoCart.setTotalRate(existBillingInfo.getTotalRate());
+				billingInfoCart.setAdvance(existBillingInfo.getAdvance());
+				billingInfoCart.setNetAmount(existBillingInfo.getNetAmount());
 				
-				
-				System.out.println("billingInfoCart=="+billingInfoCart);
+				//System.out.println("billingInfoCart=="+billingInfoCart);
 				objBillingInfoCartService.saveBillInfoCart(billingInfoCart);
 			}
 			
@@ -210,7 +214,7 @@ public class BillInfoController {
 							billingDetailsCart.setAmount(existBillingDetails.getAmount());
 							
 							billingDetatilsCartService.saveBillDetailsCart(billingDetailsCart);
-							System.out.println("listBillingDetails.size=="+listBillingDetails.size());
+							//System.out.println("listBillingDetails.size=="+listBillingDetails.size());
 						}
 						session.setAttribute("sessionBillId", sNewBillId);
 			
@@ -225,7 +229,7 @@ public class BillInfoController {
 	@RequestMapping(value = "/updateUnbillCart")
 	public @ResponseBody String updateUnbillCart(HttpServletResponse objResponce,@RequestParam("billId") String sBillId,HttpSession session, HttpServletRequest objRequest)
 			throws IOException {
-		System.out.println("From billInfoHome Home");
+		//System.out.println("From billInfoHome Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = "";
 		List<BillingDetails> listBillingDetails = null;
@@ -241,7 +245,7 @@ public class BillInfoController {
 		 List<BillingDetailsCart> listBillingDetailsCart = null;
 		try {
 			//String sBillNo = data.getString("billNo");
-			System.out.println("bill controller====sBillNo====="+sBillId);
+			//System.out.println("bill controller====sBillNo====="+sBillId);
 			session.setAttribute("sessionBillId", sBillId);
 						
 		} catch (Exception e) {

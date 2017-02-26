@@ -36,7 +36,7 @@ public class PurchaseInfoController {
 	public String purchaseInfoHome(HttpServletResponse objResponce,
 			HttpSession objSession, HttpServletRequest objRequest)
 			throws IOException {
-		System.out.println("From Prodcut Home");
+		//System.out.println("From Prodcut Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		List<PurchaserInfo> sJson = null;
 		String purchaseLst = null;
@@ -47,7 +47,7 @@ public class PurchaseInfoController {
 			ObjectMapper objMapper = new ObjectMapper();
 				purchaseLst = objMapper.writeValueAsString(sJson);
 				objSession.setAttribute("allPurchaseInfo", purchaseLst);
-				System.out.println("From Prodcut Home=="+purchaseLst);
+				//System.out.println("From Prodcut Home=="+purchaseLst);
 				objSession.setAttribute("tabActive", "purchaser");
 			}
 			
@@ -74,7 +74,7 @@ public class PurchaseInfoController {
 					String sPurchaseName = purchaserInfo.getName();
 					if(lstPurchaseName.size()==0){
 					 lstPurchaseName = purchaseInfoService.getPurchaseByName(sPurchaseName);
-					System.out.println("saveLstPurchaseName==="+lstPurchaseName+"sPurchaseName=="+sPurchaseName);
+					//System.out.println("saveLstPurchaseName==="+lstPurchaseName+"sPurchaseName=="+sPurchaseName);
 					if(lstPurchaseName == null || lstPurchaseName.size() == 0){
 						
 					
@@ -122,7 +122,7 @@ public class PurchaseInfoController {
 			
 			String sPurchaseName = data.getString("name");
 			 lstPurchaseName = purchaseInfoService.getPurchaseByName(sPurchaseName);
-			System.out.println("saveLstPurchaseName==="+lstPurchaseName+"sPurchaseName=="+sPurchaseName);
+			//System.out.println("saveLstPurchaseName==="+lstPurchaseName+"sPurchaseName=="+sPurchaseName);
 			if(lstPurchaseName != null && lstPurchaseName.size() > 0){
 			
 				for (int i = 0; i < lstPurchaseName.size(); i++) {
@@ -131,7 +131,7 @@ public class PurchaseInfoController {
 					if (purChaseExist.getPurchaseId().equals(data.get("purchaseId"))) {
 						toUpdate = true;
 					} else {
-						System.out.println("----else---");
+						//System.out.println("----else---");
 						JSONObject json = new JSONObject();
 						json.put("status", "ERROR");
 						json.put("message", "Product Already Exist");
@@ -143,8 +143,8 @@ public class PurchaseInfoController {
 				toUpdate = true;
 			}
 			if (toUpdate) {
-				System.out.println("productUpdate");
-				System.out.println("isUpdateisUpdateisUpdateisUpdatet");
+				//System.out.println("productUpdate");
+				//System.out.println("isUpdateisUpdateisUpdateisUpdatet");
 				purchaserInfo.setPurchaseId(data.getString("purchaseId"));
 				purchaserInfo.setName(data.getString("name"));
 				purchaserInfo.setMobileNo(data.getString("mobileNo"));

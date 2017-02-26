@@ -36,7 +36,7 @@ public class StatusController {
 	@RequestMapping(value = "/statusHome")
 	public String statusHome(HttpServletResponse objResponce, HttpSession objSession, HttpServletRequest objRequest)
 			throws IOException {
-		System.out.println("From Status Home");
+		//System.out.println("From Status Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = null;
 		try {
@@ -63,7 +63,7 @@ public class StatusController {
 			/*String sPurchaseName = purchaserInfo.getName();
 			 lstPurchaseName = purchaseInfoService.getPurchaseByName(sPurchaseName);*/
 			  lstStatus = objStatusServiceImpl.getStatusByName(sStatus);
-			 System.out.println("lstStatusname======="+lstStatus.size());
+			 //System.out.println("lstStatusname======="+lstStatus.size());
 			 if(lstStatus == null || lstStatus.size() == 0){
 				 status.setStatusId(CommonUtils.getAutoGenId());
 
@@ -89,7 +89,7 @@ public class StatusController {
 					sJson = json.toString();
 			 }*/
 		} catch (Exception e) {
-			System.out.println("Exception in Status Controller in statusSave()");
+			//System.out.println("Exception in Status Controller in statusSave()");
 		}
 		return sJson;
 	}
@@ -102,7 +102,7 @@ public class StatusController {
 		boolean toUpdate = false;
 		List<Status> lstStatus = null;
 		try {
-			System.out.println("data===="+data);
+			//System.out.println("data===="+data);
 			//String sStatus = data.getString("status");
 			//lstStatus = objStatusServiceImpl.getClass();
 			//lstStatus = objPopulateService.getProductByName(sProductName);
@@ -112,13 +112,13 @@ public class StatusController {
 			status.setStatusPriority(data.getString("statusPriority"));
 			
 			isUpdate = objStatusServiceImpl.updateStatus(status);
-			System.out.println("isUpdate"+isUpdate);
+			//System.out.println("isUpdate"+isUpdate);
 			/*isupdate = objRegistrationService.updateRegister(register);
-			System.out.println("isupdate"+isupdate);
+			//System.out.println("isupdate"+isupdate);
 */
 			sJson = objStatusServiceImpl.populateStatus();
 		} catch (Exception ex) {
-			System.out.println("Exception in status Controller in  statusUpdate()");
+			//System.out.println("Exception in status Controller in  statusUpdate()");
 		}
 		return sJson;
 	}

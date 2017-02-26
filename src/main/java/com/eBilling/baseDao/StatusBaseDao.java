@@ -29,11 +29,11 @@ public class StatusBaseDao {
 			/*if (product.getUpdatedDate() == null) {
 				product.setUpdatedDate(CommonUtils.getDate());
 			}*/
-			//System.out.println("hiiiiiiiii111111111iiii"+INSERT_SQL);
+			////System.out.println("hiiiiiiiii111111111iiii"+INSERT_SQL);
 			int insert = jdbcTemplate.update(
 				INSERT_SQL,
 				new Object[] {status.getStatusId(),status.getStatus(),status.getStatusPriority(),status.getDescription()});
-			//System.out.println("hjodnevjefi"+insert);
+			////System.out.println("hjodnevjefi"+insert);
 		if (insert > 0) {
 			isSave = true;
 		}
@@ -54,11 +54,10 @@ public class StatusBaseDao {
 					new Object[] { 
 							 status.getStatus(),status.getDescription(),status.getStatusPriority(),status.getStatusId() 
 							 });
-			System.out.println(sql);
-			System.out.println(status.getStatusId());
-			System.out.println("updateupdateupdateupdate"+update);
 			
-			//System.out.println(product.getProductId());
+			//System.out.println("updateupdateupdateupdate"+update);
+			
+			//"/gowthami/product.getProductId());
 			if (update > 0) {
 				isUpdate = true;
 			}
@@ -138,7 +137,7 @@ public class StatusBaseDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("getStatus=="+lstStatus);
+		//System.out.println("getStatus=="+lstStatus);
 
 		return lstStatus;
 	}

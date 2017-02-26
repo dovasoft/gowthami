@@ -50,13 +50,13 @@ public class EmailUtil {
 			ccAddress = prop.getProperty("ccadmin");
 			bccAddress = prop.getProperty("bccadmin");
 			try {
-				// System.out.println("host = " + host);
-				// System.out.println("port = " + port);
-				// System.out.println("userName = " + userName);
-				// System.out.println("password = " + password);
-				// System.out.println("toAddress = " + toAddress);
-				// System.out.println("ccAddress = " + ccAddress);
-				// System.out.println("bccAddress = " + bccAddress);
+				// //System.out.println("host = " + host);
+				// //System.out.println("port = " + port);
+				// //System.out.println("userName = " + userName);
+				// //System.out.println("password = " + password);
+				// //System.out.println("toAddress = " + toAddress);
+				// //System.out.println("ccAddress = " + ccAddress);
+				// //System.out.println("bccAddress = " + bccAddress);
 				mailContent = prop.getProperty("register_user");
 				mailContent = mailContent
 							.replace("_name_", objEmailBean.getRegName());
@@ -112,13 +112,13 @@ public class EmailUtil {
 			ccAddress = prop.getProperty("ccadmin");
 			bccAddress = prop.getProperty("bccadmin");
 			try {
-				// System.out.println("host = " + host);
-				// System.out.println("port = " + port);
-				// System.out.println("userName = " + userName);
-				// System.out.println("password = " + password);
-				// System.out.println("toAddress = " + toAddress);
-				// System.out.println("ccAddress = " + ccAddress);
-				// System.out.println("bccAddress = " + bccAddress);
+				// //System.out.println("host = " + host);
+				// //System.out.println("port = " + port);
+				// //System.out.println("userName = " + userName);
+				// //System.out.println("password = " + password);
+				// //System.out.println("toAddress = " + toAddress);
+				// //System.out.println("ccAddress = " + ccAddress);
+				// //System.out.println("bccAddress = " + bccAddress);
 				mailContent = prop.getProperty("forgot_password");
 				mailContent = mailContent.replace("_name_", objEmailBean.getRegName());
 				mailContent = mailContent.replace("_pass_",	objEmailBean.getPassword());

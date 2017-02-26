@@ -91,8 +91,8 @@ public class BillingDetatilsCartServiceImpl implements BillingDetatilsCartServic
 						.valueOf(iTotalQuantity));
 				objBillingInfoCart.setTotalMrp(String.valueOf(iTotalMrp));
 				objBillingInfoCart.setTotalRate(String.valueOf(iTotalRate));
-				objBillingInfoCart.setTotalAmount(String
-						.valueOf(iTotalAmount));
+				objBillingInfoCart.setTotalAmount(String.valueOf(iTotalAmount));
+				//objBillingInfoCart.setNetAmount(String.valueOf(iTotalAmount));
 			}
 		} catch (Exception e) {
 
@@ -135,7 +135,7 @@ public class BillingDetatilsCartServiceImpl implements BillingDetatilsCartServic
 				 for(int i=0;i<listBillingDetails.size();i++){
 					 BillingDetailsCart existBillingDetailsCart = listBillingDetails.get(i);
 					 if(existBillingDetailsCart !=null && existBillingDetailsCart.getProductId().equals(sNewProductId)){
-						// System.out.println("in----------checkInCart---------------sNewProductId=="+sNewProductId+"--------------existBillingDetailsCart.getProductId()==="+existBillingDetailsCart.getProductId());
+						// //System.out.println("in----------checkInCart---------------sNewProductId=="+sNewProductId+"--------------existBillingDetailsCart.getProductId()==="+existBillingDetailsCart.getProductId());
 						 isExist = true;
 						 break;
 					 }
@@ -163,12 +163,12 @@ public class BillingDetatilsCartServiceImpl implements BillingDetatilsCartServic
 				
 				BillingDetailsCart existBillingDetailsCart = listBillingDetails.get(i);
 				if (existBillingDetailsCart.getProductId().equals(sNewProductId)) {
-					//System.out.println("in----------updateProductQuantity---------------sNewProductId=="+sNewProductId+"--------------existBillingDetailsCart.getProductId()==="+existBillingDetailsCart.getProductId());
+					////System.out.println("in----------updateProductQuantity---------------sNewProductId=="+sNewProductId+"--------------existBillingDetailsCart.getProductId()==="+existBillingDetailsCart.getProductId());
 					int existQty = Integer.parseInt(existBillingDetailsCart.getQuantity());
 					int newQty = Integer.parseInt(billingdetailsCart.getQuantity());
 					int existAmount = Integer.parseInt(existBillingDetailsCart.getAmount());
 					int newAmount = Integer.parseInt(billingdetailsCart.getAmount());
-					//System.out.println("existQty=="+existQty+"--------------newQty==="+newQty);
+					////System.out.println("existQty=="+existQty+"--------------newQty==="+newQty);
 					existBillingDetailsCart.setQuantity(String.valueOf(existQty + newQty));
 					existBillingDetailsCart.setAmount(String.valueOf(existAmount + newAmount));
 					
@@ -180,7 +180,7 @@ public class BillingDetatilsCartServiceImpl implements BillingDetatilsCartServic
 
 		} catch (Exception e) {
 
-			System.out.println("Exception in updateProductQuantity in  calculateTotal()");
+			//System.out.println("Exception in updateProductQuantity in  calculateTotal()");
 		}
 		return listBillingDetails;
 	}
@@ -194,7 +194,7 @@ public class BillingDetatilsCartServiceImpl implements BillingDetatilsCartServic
 			
 		} catch (Exception e) {
 			//objLogger.info("Exception in getAllBillInfoByBillNo()" + e);
-			System.out.println("Exception in getAllBillInfoByBillNo()");
+			//System.out.println("Exception in getAllBillInfoByBillNo()");
 		}
 		return billingDetails;
 	}

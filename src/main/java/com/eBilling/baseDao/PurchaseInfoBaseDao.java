@@ -53,7 +53,7 @@ public class PurchaseInfoBaseDao {
 							 StringUtils.trim(purchaseInfo.getName()),
 							 StringUtils.trim(purchaseInfo.getMobileNo()),StringUtils.trim(purchaseInfo.getAddress()),StringUtils.trim(purchaseInfo.geteMail()),StringUtils.trim(purchaseInfo.getUpdatedBy()),StringUtils.trim(purchaseInfo.getUpdatedDate()),StringUtils.trim(purchaseInfo.getTinNo()),StringUtils.trim(purchaseInfo.getPurchaseId())
 							 });
-			System.out.println(sql);
+			
 			if (update > 0) {
 				isUpdate = true;
 			}
@@ -100,7 +100,7 @@ public class PurchaseInfoBaseDao {
 		try {
 			String sql = " SELECT * from purchaseinfo order by updatedDate desc";
 			lstProduct = jdbcTemplate.query(sql, new BeanPropertyRowMapper<PurchaserInfo>(PurchaserInfo.class));
-			System.out.println("sql=="+sql);
+			//System.out.println("sql=="+sql);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -119,7 +119,7 @@ public class PurchaseInfoBaseDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("getProduct=="+lstPurchaseInfoModel.size());
+		//System.out.println("getProduct=="+lstPurchaseInfoModel.size());
 
 		return lstPurchaseInfoModel;
 	}
@@ -128,10 +128,10 @@ public class PurchaseInfoBaseDao {
 		List<PurchaserInfo> retlist = null;
 		try {
 			String sql = "SELECT * from purchaseinfo where eMail = ? and mobileNo=?";
-			System.out.println("query----"+sql);
+			//System.out.println("query----"+sql);
 			retlist = jdbcTemplate.query(sql, new Object[] {StringUtils.trim(sEmail),StringUtils.trim(sMobileNo)},new BeanPropertyRowMapper<PurchaserInfo>(PurchaserInfo.class));
 			
-			System.out.println("retlist----"+retlist.toString());
+			//System.out.println("retlist----"+retlist.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

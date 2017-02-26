@@ -45,7 +45,7 @@ public class SendMessageController {
 	@RequestMapping(value = "/sendMessageHome")
 	public String sendMessageHome(HttpServletResponse objResponce, @ModelAttribute LoginInfo loginInfo,
 			HttpSession session, HttpServletRequest objRequest) throws IOException {
-		// System.out.println("From sendMessageHome");
+		// //System.out.println("From sendMessageHome");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = null;
 		try {
@@ -66,13 +66,13 @@ public class SendMessageController {
 		InputStream input = null;
 		SendSms Objsmsbean = null;
 		try {
-			// System.out.println("in sendMessage.... ");
+			// //System.out.println("in sendMessage.... ");
 
 			String sNewMsg = data.getString("sendAaddress");
-			// System.out.println("sNewMsg.... " + sNewMsg);
+			// //System.out.println("sNewMsg.... " + sNewMsg);
 			lstPurchase = purchaseInfoService.getAllPurchaseInfo();
 
-			// System.out.println("purchase Details.... " + lstPurchase.size());
+			// //System.out.println("purchase Details.... " + lstPurchase.size());
 			if (lstPurchase != null && lstPurchase.size() > 0) {
 				StringBuffer sBuffPur = new StringBuffer();
 
@@ -84,7 +84,7 @@ public class SendMessageController {
 
 					sBuffPur.append("91" + purchaserInfo.getMobileNo());
 				}
-				// System.out.println("sBuffPur==" + sBuffPur.toString());
+				// //System.out.println("sBuffPur==" + sBuffPur.toString());
 
 				Properties prop = new Properties();
 				String propertiespath = objContext.getRealPath("Resources" + File.separator + "DataBase.properties");
@@ -94,14 +94,14 @@ public class SendMessageController {
 				String sendSms = prop.getProperty("sendSms");
 				if (sendSms.equals("yes")) {
 					String smsOtpText = prop.getProperty("smsOtpText");
-					// System.out.println("smsOtpText = " + smsOtpText);
+					// //System.out.println("smsOtpText = " + smsOtpText);
 
 					Objsmsbean = new SendSms();
 					Objsmsbean.setSendTo(sBuffPur.toString());
 					Objsmsbean.setMessage(sNewMsg);
-					// System.out.println("before sendSms");
+					// //System.out.println("before sendSms");
 					Sms.sendMessage(objContext, Objsmsbean);
-					// System.out.println("after sendSms");
+					// //System.out.println("after sendSms");
 				}
 
 			}

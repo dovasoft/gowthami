@@ -138,7 +138,7 @@
 							<label>Email</label>
 							<input type="text" name="email" id="email" onkeyup="removeError(this.id);">
 							<input type="hidden" id="regId">
-							<input type="hidden" id="regType"  value="Admin">
+							<input type="hidden" id="regType"  value="User">
 						</div>
 					</div>
 					<!-- <div class="block-searchbill">
@@ -163,7 +163,7 @@
 					<div class="block-footer">
 						<aside class="block-footer-left sucessfully" id="unc" style="display: none">Save Sucessfully</aside>
 						<aside class="block-footer-right">
-							<input class="btn-cancel" name="" value="Cancel" type="button" onclick="dataClear();">
+							<input class="btn-cancel" name="" value="Clear" type="button" onclick="dataClear();">
 							<input class="btn-save" name="" value="Save" id="saveId" type="button" onclick="userRegister();">
 						</aside>
 					</div>
@@ -222,7 +222,7 @@
 				<div class="block-footer">
 					<aside class="block-footer-left"><exptotal></exptotal></aside>
 					<aside class="block-footer-right">
-						<!-- <input class="btn-cancel" name="" value="Cancel" type="button">
+						<!-- <input class="btn-cancel" name="" value="Clear" type="button">
 						<input class="btn-save" name="" value="Save" type="submit"> -->
 					</aside>
 				</div>

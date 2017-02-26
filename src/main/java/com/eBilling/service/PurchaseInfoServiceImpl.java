@@ -43,7 +43,7 @@ public class PurchaseInfoServiceImpl implements PurchaseInfoService{
 			isSave = purchaseInfoBaseDao.savePurchaseInfo(purchaserInfo);
 		}catch(Exception e){
 			logger.error("Exception in PurchaseInfoServiceImpl in savePurchaseInfo() "+e);
-			//System.out.println("Exception in BillingDetatilsCartServiceImpl in savePurchaseInfo() "+e);
+			////System.out.println("Exception in BillingDetatilsCartServiceImpl in savePurchaseInfo() "+e);
 		}finally{
 			
 		}
@@ -56,7 +56,7 @@ public class PurchaseInfoServiceImpl implements PurchaseInfoService{
 			isSave = purchaseInfoBaseDao.updatePurchaseInfo(purchaserInfo);
 		}catch(Exception e){
 			logger.error("Exception in PurchaseInfoServiceImpl in updatePurchaseInfo() "+e);
-			//System.out.println("Exception in BillingDetatilsCartServiceImpl in updatePurchaseInfo() "+e);
+			////System.out.println("Exception in BillingDetatilsCartServiceImpl in updatePurchaseInfo() "+e);
 		}finally{
 			
 		}
@@ -95,7 +95,7 @@ public class PurchaseInfoServiceImpl implements PurchaseInfoService{
 			lstRegister = purchaseInfoBaseDao.checkEmailAndMobileNo(sEmail,sMobileNo);
 		} catch (Exception e) {
 			logger.info("Exception in getAllBillInfoByBillNo()" + e);
-			System.out.println("Exception in getAllBillInfoByBillNo()"+e);
+			//System.out.println("Exception in getAllBillInfoByBillNo()"+e);
 		}
 		return lstRegister;
 	}
@@ -106,7 +106,7 @@ public class PurchaseInfoServiceImpl implements PurchaseInfoService{
 		PurchaserInfo purchaserInfo =null;
 		try {
 			 String sPurchaserName=data.getString("purchaserName");
-			 System.out.println("sName==="+sPurchaserName);
+			 //System.out.println("sName==="+sPurchaserName);
 			if(sPurchaserName != ""){
 				//String emailOrMobileNO = data.getString("eMail") + "" + data.getString("phone");
 				String sEmail = data.getString("eMail");
@@ -131,7 +131,7 @@ public class PurchaseInfoServiceImpl implements PurchaseInfoService{
 			}
 		}catch(Exception e){
 			logger.error("Exception in PurchaseInfoServiceImpl in addPurchaseInfo() "+e);
-			//System.out.println("Exception in BillingDetatilsCartServiceImpl in savePurchaseInfo() "+e);
+			////System.out.println("Exception in BillingDetatilsCartServiceImpl in savePurchaseInfo() "+e);
 		}finally{
 			
 		}

@@ -53,7 +53,7 @@ public class BillingInfoServiceImpl implements BillingInfoService {
 			}
 		} catch (Exception e) {
 			objLogger.info("Exception in ProductPopulateServiceImpl in populateProducts()" + e);
-			System.out.println("Exception in Product Controller in  getAllProducts()");
+			//System.out.println("Exception in Product Controller in  getAllProducts()");
 		}
 		return sJson;
 	}
@@ -64,14 +64,14 @@ public class BillingInfoServiceImpl implements BillingInfoService {
 		List<BillingInfo> lstBillingInfo = null;
 		try {
 			lstBillingInfo = billingInfoDao.getAllBillInfo(billingInfo);
-			System.out.println("lstBillingInfo==="+lstBillingInfo);
+			//System.out.println("lstBillingInfo==="+lstBillingInfo);
 			if (lstBillingInfo != null && lstBillingInfo.size() > 0) {
 				objectMapper = new ObjectMapper();
 				sJson = objectMapper.writeValueAsString(lstBillingInfo);
 			}
 		} catch (Exception e) {
 			objLogger.info("Exception in ProductPopulateServiceImpl in populateProducts()" + e);
-			System.out.println("Exception in Product Controller in  getAllProducts()");
+			//System.out.println("Exception in Product Controller in  getAllProducts()");
 		}
 		return sJson;
 	}
@@ -85,7 +85,7 @@ public class BillingInfoServiceImpl implements BillingInfoService {
 			lstBillingInfo = billingInfoDao.getAllBillInfoByBillNo(billingInfo);
 		} catch (Exception e) {
 			objLogger.info("Exception in getAllBillInfoByBillNo()" + e);
-			System.out.println("Exception in getAllBillInfoByBillNo()");
+			//System.out.println("Exception in getAllBillInfoByBillNo()");
 		}
 		return lstBillingInfo;
 	}

@@ -23,7 +23,7 @@ public class BillingInfoCartBaseDao {
 	public JdbcTemplate jdbcTemplate;
 	
 	
-	public final String INSERT_SQL = "INSERT INTO billinginfocart(billNo,billId,billDate,lrNo,lrDate,orderNo,orderDate,dispatchedBy,dispatchedDate,noOfPacks,termOfPayment,terms,name,totalAmount,tinNo,phone,address,discount,totalMrp,totalQuantity,totalRate,orderBy,payment,packSlipNo,netAmount) values (?, ?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	public final String INSERT_SQL = "INSERT INTO billinginfocart(billNo,billId,billDate,lrNo,lrDate,orderNo,orderDate,dispatchedBy,dispatchedDate,noOfPacks,termOfPayment,terms,name,totalAmount,tinNo,phone,address,discount,totalMrp,totalQuantity,totalRate,orderBy,payment,packSlipNo,netAmount,advance) values (?, ?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 	/* this should be conditional based on whether the id is present or not */
 	@Transactional
@@ -35,7 +35,7 @@ public class BillingInfoCartBaseDao {
 			int insert = jdbcTemplate.update(
 				INSERT_SQL,
 				new Object[] { 
-						billingInfoCart.getBillNo(),billingInfoCart.getBillId(),billingInfoCart.getBillDate(),billingInfoCart.getLrNo(),billingInfoCart.getLrDate(),billingInfoCart.getOrderNo(),billingInfoCart.getOrderDate(),billingInfoCart.getDispatchedBy(),billingInfoCart.getDispatchedDate(),billingInfoCart.getNoOfPacks(),billingInfoCart.getTermOfPayment(),billingInfoCart.getTerms(),billingInfoCart.getName(),billingInfoCart.getTotalAmount(),billingInfoCart.getTinNo(),billingInfoCart.getPhone(),billingInfoCart.getAddress(),billingInfoCart.getDiscount(),billingInfoCart.getTotalMrp(),billingInfoCart.getTotalQuantity(),billingInfoCart.getTotalRate(),billingInfoCart.getOrderBy(),billingInfoCart.getPayment(),billingInfoCart.getPackSlipNo(),billingInfoCart.getNetAmount()});
+						billingInfoCart.getBillNo(),billingInfoCart.getBillId(),billingInfoCart.getBillDate(),billingInfoCart.getLrNo(),billingInfoCart.getLrDate(),billingInfoCart.getOrderNo(),billingInfoCart.getOrderDate(),billingInfoCart.getDispatchedBy(),billingInfoCart.getDispatchedDate(),billingInfoCart.getNoOfPacks(),billingInfoCart.getTermOfPayment(),billingInfoCart.getTerms(),billingInfoCart.getName(),billingInfoCart.getTotalAmount(),billingInfoCart.getTinNo(),billingInfoCart.getPhone(),billingInfoCart.getAddress(),billingInfoCart.getDiscount(),billingInfoCart.getTotalMrp(),billingInfoCart.getTotalQuantity(),billingInfoCart.getTotalRate(),billingInfoCart.getOrderBy(),billingInfoCart.getPayment(),billingInfoCart.getPackSlipNo(),billingInfoCart.getNetAmount(),billingInfoCart.getAdvance()});
 		if (insert > 0) {
 			isSave = true;
 		}
@@ -74,7 +74,7 @@ public class BillingInfoCartBaseDao {
 	public List<BillingInfoCart> getAllBillInfoCart() {
 		List<BillingInfoCart> retlist = null;
 		try {
-			String sql = "SELECT * from billinginfocart where billNo != 'null'" ;
+			String sql = "SELECT * from billinginfocart where name != 'null'" ;
 			retlist = jdbcTemplate.query(sql, new BeanPropertyRowMapper<BillingInfoCart>(BillingInfoCart.class));
 
 		} catch (Exception e) {
@@ -84,9 +84,35 @@ public class BillingInfoCartBaseDao {
 		return retlist;
 	}
 	public List<BillingInfoCart> unBillInfoCart(BillingInfoCart billingInfoCart) {
+		boolean bAnd=false;
 		  try{
+			  
 			StringBuffer objStringBuffer = new StringBuffer();
-			objStringBuffer .append("SELECT * from billinginfocart  where billNo like '"+billingInfoCart.getBillNo()+"%' or phone like '"+billingInfoCart.getPhone()+"%' or name like '"+billingInfoCart.getName()+"%'" );
+			objStringBuffer .append("SELECT * from billinginfocart ");
+			if (StringUtils.isNotEmpty(billingInfoCart.getBillNo())) {
+				if (bAnd) {
+					objStringBuffer.append(" and billNo like '" + billingInfoCart.getBillNo() + "%'");
+				} else {
+					objStringBuffer.append(" where  billNo like '" + billingInfoCart.getBillNo() + "%'");
+					bAnd = true;
+				}
+			}if (StringUtils.isNotEmpty(billingInfoCart.getName())) {
+				if (bAnd) {
+					objStringBuffer.append(" and name like '" + billingInfoCart.getName() + "%'");
+				} else {
+					objStringBuffer.append(" where  name like '" + billingInfoCart.getName() + "%'");
+					bAnd = true;
+				}
+			}if (StringUtils.isNotEmpty(billingInfoCart.getPhone())) {
+				if (bAnd) {
+					objStringBuffer.append(" and phone like '" + billingInfoCart.getPhone() + "%'");
+				} else {
+					objStringBuffer.append(" where  phone like '" + billingInfoCart.getPhone() + "%'");
+					bAnd = true;
+				}
+			}
+			
+			//objStringBuffer .append("SELECT * from billinginfocart  where billNo like '"+billingInfoCart.getBillNo()+"%' or phone like '"+billingInfoCart.getPhone()+"%' or name like '"+billingInfoCart.getName()+"%'" );
 			String sql = objStringBuffer.toString();
 			System.out.println("dataaaaa==="+sql);
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<BillingInfoCart>(BillingInfoCart.class));
@@ -101,12 +127,12 @@ public class BillingInfoCartBaseDao {
 		try {
 			System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbb");
 			
-			String sql = "UPDATE billinginfocart  set billNo = ? ,billDate= ?, lrNo = ?,lrDate = ?,orderNo =?,orderDate=?,dispatchedBy=?,dispatchedDate=?,noOfPacks=?,termOfPayment=?,terms=?,name=?,phone=?,address=?,tinNo=?,totalAmount=?,discount=?,totalMrp=?,totalQuantity=?,totalRate=?,orderBy=?,payment=?,packSlipNo=?,netAmount=? where billId = ? ";
+			String sql = "UPDATE billinginfocart  set billNo = ? ,billDate= ?, lrNo = ?,lrDate = ?,orderNo =?,orderDate=?,dispatchedBy=?,dispatchedDate=?,noOfPacks=?,termOfPayment=?,terms=?,name=?,phone=?,address=?,tinNo=?,totalAmount=?,discount=?,totalMrp=?,totalQuantity=?,totalRate=?,orderBy=?,payment=?,packSlipNo=?,netAmount=?,advance=? where billId = ? ";
 
 			int update = jdbcTemplate.update(
 					sql,
 					new Object[] { 
-							billingInfoCart.getBillNo(),billingInfoCart.getBillDate(),billingInfoCart.getLrNo(),billingInfoCart.getLrDate(),billingInfoCart.getOrderNo(),billingInfoCart.getOrderDate(),billingInfoCart.getDispatchedBy(),billingInfoCart.getDispatchedDate(),billingInfoCart.getNoOfPacks(),billingInfoCart.getTermOfPayment(),billingInfoCart.getTerms(),billingInfoCart.getName(),billingInfoCart.getPhone(),billingInfoCart.getAddress(),billingInfoCart.getTinNo(),billingInfoCart.getTotalAmount(),billingInfoCart.getDiscount(),billingInfoCart.getTotalMrp(),billingInfoCart.getTotalQuantity(),billingInfoCart.getTotalRate(),billingInfoCart.getOrderBy(),billingInfoCart.getPayment(),billingInfoCart.getPackSlipNo(),billingInfoCart.getNetAmount(),billingInfoCart.getBillId()
+							billingInfoCart.getBillNo(),billingInfoCart.getBillDate(),billingInfoCart.getLrNo(),billingInfoCart.getLrDate(),billingInfoCart.getOrderNo(),billingInfoCart.getOrderDate(),billingInfoCart.getDispatchedBy(),billingInfoCart.getDispatchedDate(),billingInfoCart.getNoOfPacks(),billingInfoCart.getTermOfPayment(),billingInfoCart.getTerms(),billingInfoCart.getName(),billingInfoCart.getPhone(),billingInfoCart.getAddress(),billingInfoCart.getTinNo(),billingInfoCart.getTotalAmount(),billingInfoCart.getDiscount(),billingInfoCart.getTotalMrp(),billingInfoCart.getTotalQuantity(),billingInfoCart.getTotalRate(),billingInfoCart.getOrderBy(),billingInfoCart.getPayment(),billingInfoCart.getPackSlipNo(),billingInfoCart.getNetAmount(),billingInfoCart.getAdvance(),billingInfoCart.getBillId()
 							 });
 			System.out.println(sql);
 			System.out.println(billingInfoCart.getBillId());

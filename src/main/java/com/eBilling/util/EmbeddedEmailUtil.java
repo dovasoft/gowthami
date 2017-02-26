@@ -60,9 +60,9 @@ public class EmbeddedEmailUtil {
 			properties.put("mail.smtp.starttls.enable", "true");
 			properties.put("mail.user", userName);
 			properties.put("mail.password", password);
-			System.out.println("==start");
+			//System.out.println("==start");
 			logger.error("E:-toAddress:-"+toAddress);
-			System.out.println("to"+toAddress);
+			//System.out.println("to"+toAddress);
 			logger.error("E:-EmbeddedImageEmailUtil send() fail"+toAddress);
 			// creates a new session with an authenticator
 			Authenticator auth = new Authenticator() {
@@ -117,7 +117,7 @@ public class EmbeddedEmailUtil {
 
 			Transport.send(msg);
 			logger.error("E:-EmbeddedImageEmailUtil send() End");
-			System.out.println("send success");
+			//System.out.println("send success");
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error("E:-EmbeddedImageEmailUtil send() fail");

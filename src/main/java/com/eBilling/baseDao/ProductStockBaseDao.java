@@ -54,14 +54,14 @@ public class ProductStockBaseDao {
 				productStock.setUpdatedBy(CommonUtils.getDate());
 			}
 			String sql = "UPDATE productstock  set stock=?,oldStock=?,newStock=?,updateOn=?,updateBy=? where stockId = ? ";
-			System.out.println("sql==="+sql);
+			//System.out.println("sql==="+sql);
 			int update = jdbcTemplate.update(
 					sql,
 					new Object[] {
 							productStock.getStock(),productStock.getOldStock(),productStock.getNewStock(),productStock.getUpdatedOn(),productStock.getUpdatedBy(),productStock.getStockId()
 							 });
-			System.out.println("update111==="+update);
-			System.out.println(sql);
+			//System.out.println("update111==="+update);
+			
 			if (update > 0) {
 				isUpdate = true;
 			}
@@ -84,14 +84,14 @@ public class ProductStockBaseDao {
 				productStock.setUpdatedBy(CommonUtils.getDate());
 			}
 			String sql = "UPDATE productStock  set stock=?,oldStock=?,newStock=?,updateOn=?,updateBy=? where stockId = ? ";
-			System.out.println("sql==="+sql);
+			//System.out.println("sql==="+sql);
 			int update = jdbcTemplate.update(
 					sql,
 					new Object[] {
 							productStock.getStock(),productStock.getOldStock(),productStock.getNewStock(),productStock.getUpdatedOn(),productStock.getUpdatedBy(),productStock.getStockId()
 							 });
-			System.out.println("update111==="+update);
-			System.out.println(sql);
+			//System.out.println("update111==="+update);
+			"/gowthami/sql);
 			if (update > 0) {
 				isUpdate = true;
 			}
@@ -107,7 +107,7 @@ public class ProductStockBaseDao {
 		try {
 			String sql = "DELETE FROM productstock WHERE stockId=?";
 			int delete = jdbcTemplate.update(sql, new Object[] { id });
-			System.out.println("delete row"+delete);
+			//System.out.println("delete row"+delete);
 			if (delete > 0) {
 				isDelete = true;
 			}
@@ -135,7 +135,7 @@ public class ProductStockBaseDao {
 		List<ProductStock> retlist = null;
 		try {
 			String sql = "SELECT ps.productId,stock,oldStock,newStock,p.productName,stockId FROM productstock ps,product p  where ps.productId = p.productId and ps.productId =?";
-			System.out.println("query for getAllProductStockByProductId===="+sql);
+			//System.out.println("query for getAllProductStockByProductId===="+sql);
 			retlist = jdbcTemplate.query(sql, new Object[] {sProductId}, new BeanPropertyRowMapper<ProductStock>(ProductStock.class));
 		} catch (Exception e) {
 			//objLogger.error("Exception in BillingDetailsBaseDao in getAllBillDetailsByBillNo()" + e);

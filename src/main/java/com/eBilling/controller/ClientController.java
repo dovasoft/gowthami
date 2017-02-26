@@ -42,13 +42,13 @@ public class ClientController {
 	@RequestMapping(value = "/clientHome")
 public String clientHome(@ModelAttribute Register register ,HttpServletResponse objResponce, HttpSession objSession,HttpServletRequest objRequest) {
 
-		System.out.println("From clientHome Home");
+		//System.out.println("From clientHome Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = null;
 		try {
 			sJson = clientService.getAllClient();
 			objRequest.setAttribute("allClientInfo", sJson);
-			System.out.println("sJson:"+sJson);
+			//System.out.println("sJson:"+sJson);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -65,12 +65,12 @@ public String clientHome(@ModelAttribute Register register ,HttpServletResponse 
 		String sJson ="";
 		String photoPath = null;
 		try{
-			System.out.println("multipartFile=="+multipartFile);
+			//System.out.println("multipartFile=="+multipartFile);
 			if (!multipartFile.isEmpty()){
 				for(MultipartFile file: multipartFile){
-					System.out.println("file=="+file.getOriginalFilename());
+					//System.out.println("file=="+file.getOriginalFilename());
 						photoPath = AWSS3Util.ImageUpload(file);
-						System.out.println("photoPath=="+photoPath);
+						//System.out.println("photoPath=="+photoPath);
 					
 				}
 				if(StringUtils.isNotBlank(photoPath)){
@@ -94,10 +94,10 @@ public String clientHome(@ModelAttribute Register register ,HttpServletResponse 
 			isInsert=clientService.saveClient(client);
 			 if (isInsert) {
 				 sJson = clientService.getAllClient();
-					System.out.println("save: " + sJson);
+					//System.out.println("save: " + sJson);
 			 }
 		}catch(Exception e){
-			System.out.println("Exception in Client Controller in  saveClient()");
+			//System.out.println("Exception in Client Controller in  saveClient()");
 		}
 			 
 		return sJson;
@@ -110,7 +110,7 @@ public String clientHome(@ModelAttribute Register register ,HttpServletResponse 
 		boolean isupdate = false;
 		String sJson = "";
 		try {
-			System.out.println("multipartFile--------"+multipartFile);
+			//System.out.println("multipartFile--------"+multipartFile);
 			/*client.setEmailSupport(data.getString("emailSupport"));
 			client.setSmsSuport(data.getString("smsSuport"));
 			client.setUploadLogo(data.getString("uploadLogo"));
@@ -122,12 +122,12 @@ public String clientHome(@ModelAttribute Register register ,HttpServletResponse 
 			client.setContactPerson(data.getString("contactPerson"));
 			client.setTinNo(data.getString("tinNo"));
 			client.setCreatedDate(CommonUtils.getDate());*/
-			System.out.println("isupdateisupdateisupdateisupdate");
+			//System.out.println("isupdateisupdateisupdateisupdate");
 				//isupdate = clientService.updateClient(client);
-				System.out.println("isupdate"+isupdate);
+				//System.out.println("isupdate"+isupdate);
 				if (isupdate)
 					sJson = clientService.getAllClient();
-				System.out.println("update: " + sJson);
+				//System.out.println("update: " + sJson);
 		} catch (Exception ex) {
 			System.out
 			.println("Exception in Product Client in  updateClient()");
@@ -144,10 +144,10 @@ public String clientHome(@ModelAttribute Register register ,HttpServletResponse 
 		boolean isDelete = false;
 		String sJson = "";
 		isDelete = clientService.deleteClient(id);
-		System.out.println("1111111111"+isDelete);
+		//System.out.println("1111111111"+isDelete);
 		if (isDelete){
 			sJson = clientService.getAllClient();
-			System.out.println("Delete"+sJson);
+			//System.out.println("Delete"+sJson);
 		}
 		return sJson;
 	}

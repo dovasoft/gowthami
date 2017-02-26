@@ -129,7 +129,7 @@ $(function() {
                     <input type="text" name="phone" id="phone"  onkeyup="searchBill();">
                 </div>
             </div>
-            <div  class="block-searchbill">
+            <!-- <div  class="block-searchbill">
              <div class="block-searchbill-input">
                     <label>Bill Date From</label>
                     <input type="text" name="pname" id="billFromDate">
@@ -138,12 +138,12 @@ $(function() {
                     <label>Bill Date End</label>
                     <input type="text" name="pname" id="billEndDate">
                 </div>
-            </div>
+            </div> -->
             <div class="block-footer">
                <!--  <aside class="block-footer-left sucessfully" id="unc" style="diplay:none">Sucessfully Message</aside> -->
                 <aside class="block-footer-right">
-                    <input class="btn-cancel" name="" value="Cancel" type="button" onclick="dataClear();">
-                    <input class="btn-save" name="" value="Search" id="search" type="button">
+                    <input class="btn-cancel" name="" value="Clear" type="button" onclick="dataClear();">
+                    <!-- <input class="btn-save" name="" value="Search" id="search" type="button"> -->
                 </aside>
             </div>
         </form>
@@ -215,7 +215,7 @@ $(function() {
                     </ul>
                 </li>                 
                 <li class="ten-box" style="width:20%;">Details</li>
-                <li class="eleven-box last" style="width:16%;">Duplicate</li>
+                <li class="eleven-box last" style="width:16%;"> Duplicate</li>
             </ul>
             <div class="table-list-blk" id="billData">
                              
@@ -224,7 +224,7 @@ $(function() {
         <div class="block-footer">
             <aside class="block-footer-left"><exptotal></exptotal></aside>
             <aside class="block-footer-right">
-               <!--  <input class="btn-cancel" name="" value="Cancel" type="button">
+               <!--  <input class="btn-cancel" name="" value="Clear" type="button">
                 <input class="btn-save" name="" value="Save" type="submit"> -->
             </aside>
         </div>

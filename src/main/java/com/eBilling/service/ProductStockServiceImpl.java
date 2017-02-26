@@ -152,7 +152,7 @@ public class ProductStockServiceImpl implements ProductStockService{
 			}
 		} catch (Exception e) {
 			objLogger.info("Exception in RegistrationServiceImpl in populateProducts()" + e);
-			//System.out.println("Exception in Register Controller in  getAllProducts()");
+			////System.out.println("Exception in Register Controller in  getAllProducts()");
 		}
 		return sJson;
 	}
@@ -166,7 +166,7 @@ public class ProductStockServiceImpl implements ProductStockService{
 			
 		} catch (Exception e) {
 			//objLogger.info("Exception in getAllProductStockByProductId()" + e);
-			System.out.println("Exception in getAllProductStockByProductId()");
+			//System.out.println("Exception in getAllProductStockByProductId()");
 		}
 		return productStocks;
 	}
@@ -185,14 +185,14 @@ public class ProductStockServiceImpl implements ProductStockService{
 				productStock=lstProductstock.get(i);
 			}
 			String sStock = productStock.getStock();
-			System.out.println("sStock=="+sStock+"-------sBilledQty====="+sBilledQty);
+			//System.out.println("sStock=="+sStock+"-------sBilledQty====="+sBilledQty);
 			if(Integer.parseInt(sStock) >= Integer.parseInt(sBilledQty)){
 				bStockAvailable=true;
 			}
 			
 		} catch (Exception e) {
 			//objLogger.info("Exception in getAllProductStockByProductId()" + e);
-			System.out.println("Exception in checkStock()");
+			//System.out.println("Exception in checkStock()");
 		}
 		return bStockAvailable;
 	}
@@ -263,7 +263,7 @@ public class ProductStockServiceImpl implements ProductStockService{
 				existProductstock =lstProductstock.get(i);
 			}
 			if(lstProductstock.size() == 0){
-				System.out.println("saveProductStock:::::::::::"+productStock.toString());
+				//System.out.println("saveProductStock:::::::::::"+productStock.toString());
 				productStock.setStockId(CommonUtils.getAutoGenId());
 				productStock.setProductId(productStock.getProductId());
 				productStock.setOldStock(productStock.getStock());
@@ -352,7 +352,7 @@ public class ProductStockServiceImpl implements ProductStockService{
 				existProductstock =lstProductstock.get(i);
 			}
 			if(lstProductstock.size() == 0){
-				System.out.println("saveProductStock:::::::::::"+productStock.toString());
+				//System.out.println("saveProductStock:::::::::::"+productStock.toString());
 				productStock.setStockId(CommonUtils.getAutoGenId());
 				productStock.setProductId(productStock.getProductId());
 				productStock.setOldStock(productStock.getStock());

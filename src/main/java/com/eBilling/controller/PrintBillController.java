@@ -39,12 +39,12 @@ public class PrintBillController {
 	public String printBill(HttpServletResponse objResponce,BillingInfo billingInfo,
 			HttpSession objSession, HttpServletRequest objRequest)
 			throws IOException {
-		System.out.println("From printBill Home");
+		//System.out.println("From printBill Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = null;
 		try {
 			sJson = objBillingInfoService.getAllBillInfo(billingInfo);
-			System.out.println("sJson==============================" + sJson);
+			//System.out.println("sJson==============================" + sJson);
 			objSession.setAttribute("allPrintBill", sJson);
 		} catch (Exception e) {
 			e.printStackTrace();

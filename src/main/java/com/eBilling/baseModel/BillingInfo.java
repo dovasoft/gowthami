@@ -32,6 +32,27 @@ public class BillingInfo {
 	protected List<BillingDetails> listBillingDeteails;
 	protected List<PurchaserInfo> listPurchase;
 	protected String netAmount;
+	protected String advance;
+	
+	
+	
+	
+public String getAdvance() {
+		return advance;
+	}
+	public void setAdvance(String advance) {
+		this.advance = advance;
+	}
+protected String showPan;
+	
+	
+	
+	public String getShowPan() {
+		return showPan;
+	}
+	public void setShowPan(String showPan) {
+		this.showPan = showPan;
+	}
 	
 	public String getNetAmount() {
 		return netAmount;

@@ -69,7 +69,7 @@ public String getAllRegister() {
 		}
 	} catch (Exception e) {
 		logger.info("Exception in RegistrationServiceImpl in populateProducts()" + e);
-		//System.out.println("Exception in Register Controller in  getAllProducts()");
+		////System.out.println("Exception in Register Controller in  getAllProducts()");
 	}
 	return sJson;
 }
@@ -82,7 +82,7 @@ public List<Register> getAllBillEmailAndMobileNo(String sEmailOrMobileNo) {
 		lstRegister = registerDao.getAllBillEmailAndMobileNo(sEmailOrMobileNo);
 	} catch (Exception e) {
 		logger.info("Exception in getAllBillInfoByBillNo()" + e);
-		System.out.println("Exception in getAllBillInfoByBillNo()"+e);
+		//System.out.println("Exception in getAllBillInfoByBillNo()"+e);
 	}
 	return lstRegister;
 }
@@ -94,7 +94,7 @@ public List<Register> checkEmailAndMobileNo(String sEmail, String sMobileNo) {
 		lstRegister = registerDao.checkEmailAndMobileNo(sEmail,sMobileNo);
 	} catch (Exception e) {
 		logger.info("Exception in getAllBillInfoByBillNo()" + e);
-		System.out.println("Exception in getAllBillInfoByBillNo()"+e);
+		//System.out.println("Exception in getAllBillInfoByBillNo()"+e);
 	}
 	return lstRegister;
 }

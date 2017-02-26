@@ -83,7 +83,7 @@ public class BillingController {
 			
 			
 			
-			System.out.println("First time caling");
+			//System.out.println("First time caling");
 /*			sJson = objProductService.populateProducts();
 			objSession.setAttribute("allProducts", sJson);*/
 			getAllPurchaser = objInfoService.getAllPurchaseInfo();
@@ -93,13 +93,13 @@ public class BillingController {
 			
 			
 				sBillId = (String)objSession.getAttribute("sessionBillId");
-				System.out.println("First time caling sBillId==" + sBillId);
+				//System.out.println("First time caling sBillId==" + sBillId);
 				if(sBillId != null && sBillId.length() > 0){
 					data.put("billId", sBillId);
 					data.put("productId", "");
 					 sJson =saveBillProduct(data, objSession);
 					 objSession.setAttribute("updateCart", sJson);
-					 
+					 objSession.setAttribute("showPan", "");
 					//saveBillProduct(data, objSession);
 					
 				}
@@ -108,7 +108,7 @@ public class BillingController {
 			getAllProductStock = productStockService.getAllProductStock();
 			objSession.setAttribute("getAllStock", getAllProductStock);
 			
-			System.out.println("First time caling getAllStock==" + getAllProductStock);
+			//System.out.println("First time caling getAllStock==" + getAllProductStock);
 			
 			if(billingInfoCart == null){
 				billingInfoCart = new BillingInfoCart();
@@ -116,7 +116,7 @@ public class BillingController {
 			
 			objSession.setAttribute("tabActive", "newBill");
 		} catch (Exception e) {
-			System.out.println("Exception in BillingController in getBillingDetails()"+ e);
+			//System.out.println("Exception in BillingController in getBillingDetails()"+ e);
 		} finally {
 
 		}
@@ -145,7 +145,7 @@ public class BillingController {
 			sProductId = data.getString("productId");
 			if(sProductId !=""){
 			boolean bStockAvailable = productStockService.checkStock( sProductId, data.getString("quantity"));
-			System.out.println("bStockAvailable===="+bStockAvailable);
+			//System.out.println("bStockAvailable===="+bStockAvailable);
 			if(!bStockAvailable){
 				JSONObject json = new JSONObject();
 				json.put("status", "ERROR");
@@ -154,7 +154,7 @@ public class BillingController {
 				return sJson;
 			}
 			}
-				System.out.println("Adding Product");
+				//System.out.println("Adding Product");
 				sBillId = (String)objSession.getAttribute("sessionBillId");
 				billingInfoCart = new BillingInfoCart();
 				if (StringUtils.isEmpty(sBillId)) {
@@ -164,7 +164,7 @@ public class BillingController {
 						sBillId = CommonUtils.getAutoGenId();
 						billingInfoCart.setBillId(sBillId);
 						String sBillNo = objBillingInfoCartService.getUpdateId("billInfoCart");
-						System.out.println("sBillNo==="+sBillNo);
+						//System.out.println("sBillNo==="+sBillNo);
 						if (StringUtils.isNotEmpty(sBillId)) {
 							billingInfoCart.setBillNo(sBillNo);
 						}
@@ -173,14 +173,14 @@ public class BillingController {
 				}else{
 					billingInfoCart.setBillId(sBillId);
 					lstBillingInfoCart = objBillingInfoCartService.getAllBillInfoByBillNo(billingInfoCart);
-					System.out.println("lstBillingInfo==size===="+lstBillingInfoCart.size());
+					//System.out.println("lstBillingInfo==size===="+lstBillingInfoCart.size());
 					for(int i=0;i<lstBillingInfoCart.size();i++){
 						billingInfoCart=lstBillingInfoCart.get(i);
-						System.out.println("existBillingInfoCart==size===="+billingInfoCart.getBillId());
+						//System.out.println("existBillingInfoCart==size===="+billingInfoCart.getBillId());
 					}
 				}
 				
-				System.out.println("sBillId==" + sBillId);
+				//System.out.println("sBillId==" + sBillId);
 				objSession.setAttribute("sessionBillId", sBillId);
 				
 				if (sProductId != null && sProductId.length() > 0) {
@@ -199,7 +199,7 @@ public class BillingController {
 				}	
 					// Getting product list by billId
 					listBillingDetails = objBillingDetatilsCartService.getAllbillDeteailsCart(sBillId);
-					//System.out.println("listBillingDetails.size=="+listBillingDetails.size());
+					////System.out.println("listBillingDetails.size=="+listBillingDetails.size());
 					boolean isExist = objBillingDetatilsCartService.checkInCart( billingdetailsCart, listBillingDetails);
 					if(isExist){
 						listBillingDetails = objBillingDetatilsCartService.updateProductQuantity( billingdetailsCart, listBillingDetails);
@@ -216,11 +216,11 @@ public class BillingController {
 				billingInfoCart.setListBillingInfoCart(listBillingDetails);
 				
 				listPurchaseInfoModel = objInfoService.getAllPurchaseInfo();
-				System.out.println("listPurchaseInfoModel=="+listPurchaseInfoModel.size());
+				//System.out.println("listPurchaseInfoModel=="+listPurchaseInfoModel.size());
 				 billingInfoCart.setListPurchase(listPurchaseInfoModel);
 				 
 				 isUpdate=objBillingInfoCartService.updateBillInfoCart(billingInfoCart);
-					System.out.println("isUpdate"+isUpdate);
+					//System.out.println("isUpdate"+isUpdate);
 					
 				objJSON = new JSONObject();
 				objJSON.append("objBillingInfoCart", billingInfoCart);
@@ -232,7 +232,7 @@ public class BillingController {
 				}
 				
 		} catch (Exception e) {
-			System.out.println("Exception in Product Controller in  saveBillProduct()");
+			//System.out.println("Exception in Product Controller in  saveBillProduct()");
 		}
 		return sJson;
 	}
@@ -260,7 +260,7 @@ public class BillingController {
 		try {
 			
 			String sCustType = data.getString("customerType");
-			System.out.println("custmerType==="+sCustType);
+			//System.out.println("custmerType==="+sCustType);
 				if(StringUtils.isNotEmpty(sCustType) && sCustType.equals("newCustmer")){
 					boolean bInsertPur = objInfoService.addPurchaseInfo(data);
 					if(!bInsertPur){
@@ -271,15 +271,15 @@ public class BillingController {
 					}
 				}
 					
-			System.out.println("productStock::::::"+sProductId);
+			//System.out.println("productStock::::::"+sProductId);
 			sBillId = data.getString("billId");
 		  	 if(sBillId.length() > 0){
 			//listBillingDetails = new List<BillingDetailsCart>();
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+			//System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			billingInfo.setBillId(sBillId);
 			
 			String sName=data.getString("name");
-			System.out.println("sName==="+sName);
+			//System.out.println("sName==="+sName);
 			if(StringUtils.isNotEmpty(sName)){
 				billingInfo.setName(sName);
 			}else{
@@ -309,13 +309,14 @@ public class BillingController {
 			billingInfo.setPayment(data.getString("payment"));
 			billingInfo.setPackSlipNo(data.getString("packSlipNo"));
 			billingInfo.setNetAmount(data.getString("netAmount"));
+			billingInfo.setAdvance(data.getString("advance"));
 			
 			sJson=objBillingInfoService.saveBillInfo(billingInfo);
 			
 			
 			isDelete=objBillingInfoCartService.deleteBillInfoCart(sBillId);
 			
-			System.out.println("sBillId==" + sBillId);
+			//System.out.println("sBillId==" + sBillId);
 			
 			listBillingDetails = objBillingDetatilsCartService.getAllbillDeteailsCart(sBillId);
 			
@@ -345,12 +346,15 @@ public class BillingController {
 				 String newJson = billInfoController.billInfoHome( objResponce,sBillId, objSession,  objRequest);
 				 objSession.setAttribute("updateCart", "");
 				 objSession.setAttribute("sessionBillId","");
-				 
-					
+				 String showPan= data.getString("showPan");
+				 if(StringUtils.isNotEmpty(showPan)){
+				 objSession.setAttribute("showPan",showPan);
+				 }
+				 //objSession.setAttribute("showPan","");
 		  	 }
 		  	 
 		} catch (Exception ex) {
-			//System.out.println("Exception thrown in updateDeatailsCart");
+			////System.out.println("Exception thrown in updateDeatailsCart");
 			ex.printStackTrace();
 		}
 		return "billInfoHome";
@@ -379,7 +383,7 @@ public class BillingController {
 		try {
 			
 			String sCustType = data.getString("customerType");
-			System.out.println("custmerType==="+sCustType);
+			//System.out.println("custmerType==="+sCustType);
 				if(StringUtils.isNotEmpty(sCustType) && sCustType.equals("newCustmer")){
 					boolean bInsertPur = objInfoService.addPurchaseInfo(data);
 					if(!bInsertPur){
@@ -398,7 +402,7 @@ public class BillingController {
 		  		billingInfoCart = new BillingInfoCart();
 		  	
 			//listBillingDetails = new List<BillingDetailsCart>();
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+			//System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			billingInfoCart.setBillId(sBillId);
 			
 			String sName=data.getString("name");
@@ -432,7 +436,10 @@ public class BillingController {
 			billingInfoCart.setPayment(data.getString("payment"));
 			billingInfoCart.setPackSlipNo(data.getString("packSlipNo"));
 			billingInfoCart.setNetAmount(data.getString("netAmount"));
-			//System.out.println("netamoutnt=="+data.getString("netAmount"));
+			billingInfoCart.setAdvance(data.getString("advance"));
+			
+			billingInfoCart.setShowPan(data.getString("showPan"));
+			////System.out.println("netamoutnt=="+data.getString("netAmount"));
 			
 			isSave=objBillingInfoCartService.updateBillInfoCart(billingInfoCart);
 			
@@ -454,7 +461,7 @@ public class BillingController {
 		  	 }
 		  	String newJson = billInfoController.unBillInfo(objResponce, sBillId, objSession, objRequest);
 		} catch (Exception ex) {
-			//System.out.println("Exception thrown in updateDeatailsCart");
+			////System.out.println("Exception thrown in updateDeatailsCart");
 			ex.printStackTrace();
 		}
 		return "billInfoHome";
@@ -487,7 +494,7 @@ public class BillingController {
 				
 			}*/
 			//if(Integer.parseInt(productStock.getStock()) >= Integer.parseInt(data.getString("quantity"))){
-			System.out.println("update---------updateBillDetailsCart====="+data);
+			//System.out.println("update---------updateBillDetailsCart====="+data);
 			product = new Product();
 			billingdetailsCart.setBillDetailsId(data.getString("billDetailsId"));
 			billingdetailsCart.setQuantity(data.getString("quantity"));
@@ -498,7 +505,7 @@ public class BillingController {
 			int iQuantity = Integer.parseInt(data.getString("quantity"));
 			int iAmount = iRate * iQuantity;
 			billingdetailsCart.setAmount(String.valueOf(iAmount));
-			System.out.println("billingdetailsCart==="+billingdetailsCart);
+			//System.out.println("billingdetailsCart==="+billingdetailsCart);
 			
 			//update Stock
 			
@@ -509,16 +516,16 @@ public class BillingController {
 			
 				
 			sBillId = data.getString("billId");
-			System.out.println("billId==="+sBillId);
+			//System.out.println("billId==="+sBillId);
 			
 			billingInfoCart =new BillingInfoCart();
 			billingInfoCart.setBillId(sBillId);
 			// Getting product list by billId
 			lstBillingInfoCart = objBillingInfoCartService.getAllBillInfoCartByBillId(billingInfoCart);
-			System.out.println("listBillingDetailsCart==="+lstBillingInfoCart.size());
+			//System.out.println("listBillingDetailsCart==="+lstBillingInfoCart.size());
 			for(int i=0;i<lstBillingInfoCart.size();i++){
 				billingInfoCart = lstBillingInfoCart.get(i);
-				System.out.println("billingInfoCart=="+billingInfoCart.toString());
+				//System.out.println("billingInfoCart=="+billingInfoCart.toString());
 			}
 			
 			// Getting product list by billId
@@ -530,7 +537,7 @@ public class BillingController {
 			
 			// Adding puchaser list to billingInfo
 			listPurchaseInfoModel = objInfoService.getAllPurchaseInfo();
-			System.out.println("listPurchaseInfoModel=="+listPurchaseInfoModel.size());
+			//System.out.println("listPurchaseInfoModel=="+listPurchaseInfoModel.size());
 			 billingInfoCart.setListPurchase(listPurchaseInfoModel);
 			
 			objJSON = new JSONObject();
@@ -543,9 +550,9 @@ public class BillingController {
 			}
 			
 			isUpdate=objBillingInfoCartService.updateBillInfoCart(billingInfoCart);
-			System.out.println("isUpdate"+isUpdate);
+			//System.out.println("isUpdate"+isUpdate);
 			
-			System.out.println("hi,,,,,,");
+			//System.out.println("hi,,,,,,");
 			/*}else {
 				JSONObject json = new JSONObject();
 				json.put("status", "ERROR");
@@ -556,7 +563,7 @@ public class BillingController {
 			}*/
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			System.out.println("Exception thrown in updateDeatailsCart");
+			//System.out.println("Exception thrown in updateDeatailsCart");
 		}
 		return sJson;
 	}
@@ -584,7 +591,7 @@ public class BillingController {
 		 try{
 				
 				sBillDetailsId =data.getString("billDetailsId");
-				System.out.println("sBillDetailsId==="+sBillDetailsId);
+				//System.out.println("sBillDetailsId==="+sBillDetailsId);
 				
 				isDelete = objBillingDetatilsCartService.deleteBillingDetailsCart(sBillDetailsId);
 				
@@ -593,29 +600,34 @@ public class BillingController {
 				//productStockService.updatedStock(productStock,billingdetailsCart,lstProductstock, data);
 				
 			 	sBillId =data.getString("billId");
-				System.out.println("billId==="+sBillId);
+				//System.out.println("billId==="+sBillId);
 				
 				
 				billingInfoCart =new BillingInfoCart();
 				billingInfoCart.setBillId(sBillId);
 				// Getting product list by billId
 				lstBillingInfoCart = objBillingInfoCartService.getAllBillInfoCartByBillId(billingInfoCart);
-				System.out.println("listBillingDetailsCart==="+lstBillingInfoCart.size());
+				//System.out.println("listBillingDetailsCart==="+lstBillingInfoCart.size());
+
 				for(int i=0;i<lstBillingInfoCart.size();i++){
 					billingInfoCart = lstBillingInfoCart.get(i);
-					System.out.println("billingInfoCart=="+billingInfoCart.toString());
+					//System.out.println("billingInfoCart=="+billingInfoCart.toString());
 				}
 				
 				// Getting product list by billId
 				listBillingDetails = objBillingDetatilsCartService.getAllbillDeteailsCart(sBillId);
 				
-				
+				if(listBillingDetails.size() == 0){
+					cancelBill(sBillId, session);
+					billingInfoCart = null;
+				}
+				if(billingInfoCart != null){
 				billingInfoCart = objBillingDetatilsCartService.calculateTotal(listBillingDetails, billingInfoCart);
 				billingInfoCart.setListBillingInfoCart(listBillingDetails);
 				
 				// Adding puchaser list to billingInfo
 				listPurchaseInfoModel = objInfoService.getAllPurchaseInfo();
-				System.out.println("listPurchaseInfoModel=="+listPurchaseInfoModel.size());
+				//System.out.println("listPurchaseInfoModel=="+listPurchaseInfoModel.size());
 				 billingInfoCart.setListPurchase(listPurchaseInfoModel);
 				
 				objJSON = new JSONObject();
@@ -627,9 +639,8 @@ public class BillingController {
 					sJson = objMapper.writeValueAsString(listBillInfoCart);
 				}
 				isUpdate=objBillingInfoCartService.updateBillInfoCart(billingInfoCart);
-				System.out.println("isUpdate"+isUpdate);
-				
-				System.out.println("hi,,,,,,");
+				//System.out.println("isUpdate"+isUpdate);
+				}
 		 }catch(Exception e){
 			 e.printStackTrace();
 		 }
@@ -643,10 +654,10 @@ public class BillingController {
 	public @ResponseBody String cancelBill(@RequestParam("sBillId") String sBillId,HttpSession objSession) {
 		boolean isDelete = false;
 		String sJson = "";
-		System.out.println("datadatadatadata"+sBillId);
+		//System.out.println("datadatadatadata"+sBillId);
 		objBillingDetatilsCartService.deleteBillDetailsCart(sBillId);
 		objBillingInfoCartService.deleteBillInfoCart(sBillId);
 		objSession.setAttribute("sessionBillId","");
-		return sJson;
+		return "newBill";
 	}
 }

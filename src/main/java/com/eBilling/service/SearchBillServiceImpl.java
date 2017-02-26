@@ -27,7 +27,7 @@ public class SearchBillServiceImpl {
 			}
 		} catch (Exception e) {
 			logger.info("Exception in ProductPopulateServiceImpl in populateProducts()" + e);
-			System.out.println("Exception in Product Controller in  getAllProducts()");
+			//System.out.println("Exception in Product Controller in  getAllProducts()");
 		}
 		return sJson;
 	}*/

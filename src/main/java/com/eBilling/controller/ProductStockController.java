@@ -46,22 +46,20 @@ public class ProductStockController {
 	ProductStockService productStockService;
 	@Autowired
 	StockDetailsService stockDetailsService;
-	
-	@RequestMapping(value = "/stockHome")
-	public String stockHome(@ModelAttribute ProductStock productStock, HttpServletResponse objResponce, HttpSession objSession,
-			HttpServletRequest objRequest) {
 
-		// System.out.println("From Prodcut Home");
+	@RequestMapping(value = "/stockHome")
+	public String stockHome(@ModelAttribute ProductStock productStock, HttpServletResponse objResponce,
+			HttpSession objSession, HttpServletRequest objRequest) {
+
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = null;
-		String getAllProductStock =null;
+		String getAllProductStock = null;
 		try {
 			sJson = objProductService.populateProducts();
 			objSession.setAttribute("allProducts", sJson);
 			getAllProductStock = productStockService.getAllProductStock();
 			objSession.setAttribute("getAllStock", getAllProductStock);
 			objSession.setAttribute("tabActive", "stocks");
-			System.out.println("getAllProductStock==="+getAllProductStock);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -79,42 +77,16 @@ public class ProductStockController {
 		InputStream input = null;
 		SendSms Objsmsbean = null;
 		String sOtp = null;
-		StockDetails stockDetails=null;
+		StockDetails stockDetails = null;
 		try {
-			
-			
-			/*System.out.println("saveProductStock:::::::::::"+productStock.toString());
-			productStock.setStockId(CommonUtils.getAutoGenId());
-			productStock.setProductId(productStock.getProductId());
-			productStock.setOldStock(productStock.getStock());
-			productStock.setNewStock(productStock.getNewStock());
-			int iOldStock=Integer.parseInt(productStock.getOldStock());
-			int iNewStock=Integer.parseInt(productStock.getNewStock());
-			int iStock=iOldStock+iNewStock;
-			productStock.setStock(String.valueOf(iStock));
-			
-			isInsert = productStockService.saveProductStock(productStock);*/
-			
+
+			stockDetailsService.addStockDetails(productStock.getProductId(), productStock.getNewStock(),
+					productStock.getStockId(), "Entry", productStock.getNewStock(), productStock.getOldStock());
 			productStockService.addNewStock(productStock);
-			
-			stockDetailsService.addStockDetails(productStock.getProductId(), productStock.getNewStock(), productStock.getStockId(), "Entry",productStock.getNewStock(),productStock.getOldStock());
-			/*System.out.println("isInsert===="+isInsert);
-			String sEntry="Entry";
-			stockDetails =new StockDetails();
-			stockDetails.setStockDetailsId(CommonUtils.getAutoGenId());
-			stockDetails.setProductId(productStock.getProductId());
-			stockDetails.setQuantity(productStock.getNewStock());
-			stockDetails.setTransactionId(productStock.getStockId());
-			stockDetails.setTransactionDate(CommonUtils.getDate());
-			stockDetails.setTransactionType(sEntry);
-			
-			isInsert = stockDetailsService.saveStockDetails(stockDetails);*/
-			
+
 			sJson = productStockService.getAllProductStock();
-			
-			
+
 		} catch (Exception e) {
-			 System.out.println("Exception in RegistraionController in  saveRegister()"+e);
 		}
 
 		return sJson;
@@ -125,20 +97,20 @@ public class ProductStockController {
 			@RequestParam("jsondata") JSONObject data, HttpSession objSession, HttpServletRequest objRequest) {
 		boolean isupdate = false;
 		String sJson = "";
-		StockDetails stockDetails=null;
+		StockDetails stockDetails = null;
 		try {
 			String sStockId = data.getString("stockId");
-			if(StringUtils.isNotEmpty(sStockId)){
-				isupdate = productStockService.deductProductStock(data.getString("productId"), data.getString("newStock"));
+			if (StringUtils.isNotEmpty(sStockId)) {
+				isupdate = productStockService.deductProductStock(data.getString("productId"),
+						data.getString("newStock"));
 				if (isupdate)
 					sJson = productStockService.getAllProductStock();
-				
-				stockDetailsService.addStockDetails(data.getString("productId"),data.getString("stock"),sStockId,"Update",data.getString("newStock"),data.getString("oldStock"));
+
+				stockDetailsService.addStockDetails(data.getString("productId"), data.getString("stock"), sStockId,
+						"Update", data.getString("newStock"), data.getString("oldStock"));
 			}
-			
-			
+
 		} catch (Exception ex) {
-			System.out.println("Exception in RegistraionController in  updateProductStock()");
 			ex.printStackTrace();
 		}
 		return sJson;
@@ -150,33 +122,30 @@ public class ProductStockController {
 		boolean isDelete = false;
 		String sJson = "";
 		isDelete = productStockService.deleteProductStock(id);
-		// System.out.println("1111111111" + isDelete);
 		if (isDelete) {
 			sJson = productStockService.getAllProductStock();
-			// System.out.println("Delete" + sJson);
 		}
 		return sJson;
 	}
+
 	@RequestMapping(value = "/stockDetails")
 	public @ResponseBody String stockDetails(@RequestParam("productId") String sProductId, HttpSession objSession,
 			HttpServletRequest objRequest) throws JsonGenerationException, JsonMappingException, IOException {
-		
-		
+
 		String sJson = "";
-		List<StockDetails> lstProductStockDetais =null;
-		try{
+		List<StockDetails> lstProductStockDetais = null;
+		try {
 			lstProductStockDetais = stockDetailsService.getProductStockDetailsByProductId(sProductId);
-			System.out.println("lstProductStock======" + lstProductStockDetais.size());
-			
+
 			if (lstProductStockDetais != null && lstProductStockDetais.size() > 0) {
-				ObjectMapper objectMapper= new ObjectMapper();
+				ObjectMapper objectMapper = new ObjectMapper();
 				sJson = objectMapper.writeValueAsString(lstProductStockDetais);
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return sJson;
 	}
-	
+
 }

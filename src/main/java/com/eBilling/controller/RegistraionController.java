@@ -47,7 +47,7 @@ public class RegistraionController {
 	public String regHome(@ModelAttribute Register register, HttpServletResponse objResponce, HttpSession objSession,
 			HttpServletRequest objRequest) {
 
-		// System.out.println("From Prodcut Home");
+		// //System.out.println("From Prodcut Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = null;
 		try {
@@ -85,36 +85,36 @@ public class RegistraionController {
 			String sendMail = prop.getProperty("sendMail");
 			String sendSms = prop.getProperty("sendSms");
 
-			// System.out.println("sendMail==" + sendMail);
+			// //System.out.println("sendMail==" + sendMail);
 			sOtp = CommonUtils.generatePIN();
-			System.out.println("lstRegister:::::::::::" + lstRegister.size());
+			//System.out.println("lstRegister:::::::::::" + lstRegister.size());
 			if (lstRegister.size() == 0) {
 				register.setPassword(sOtp);
 				register.setRegId(CommonUtils.getAutoGenId());
 				register.setEmailCode(sOtp);
 
 				isInsert = objRegistrationService.saveRegister(register);
-				System.out.println("isInsert====" + isInsert);
+				//System.out.println("isInsert====" + isInsert);
 
 				if (isInsert) {
 					if (sendSms.equals("yes")) {
 						String sOtpMsg = prop.getProperty("smsOtpText");
-						// System.out.println("smsOtpText = " + smsOtpText);
+						// //System.out.println("smsOtpText = " + smsOtpText);
 
-						System.out.println("sOtpMsg==" + sOtpMsg);
+						//System.out.println("sOtpMsg==" + sOtpMsg);
 						if (sOtpMsg != null && sOtpMsg.length() > 0) {
 							sOtpMsg = sOtpMsg.replace("OTP_TXT", sOtp);
 						}
-						System.out.println("sOtpMsg==" + sOtpMsg);
+						//System.out.println("sOtpMsg==" + sOtpMsg);
 
 						Objsmsbean = new SendSms();
 						Objsmsbean.setSendTo("91" + register.getMobileNo());
 						Objsmsbean.setMessage(sOtpMsg);
-						// System.out.println("before sendSms");
+						// //System.out.println("before sendSms");
 						Sms.sendMessage(objContext, Objsmsbean);
-						// System.out.println("after sendSms");
+						// //System.out.println("after sendSms");
 					}
-					// System.out.println("sendmail===" + sendMail);
+					// //System.out.println("sendmail===" + sendMail);
 					if (sendMail.equals("yes")) {
 						EmailUtil.sendEmail(register, objContext);
 					}
@@ -128,7 +128,7 @@ public class RegistraionController {
 				sJson = json.toString();
 			}
 		} catch (Exception e) {
-			System.out.println("Exception in RegistraionController in  saveRegister()");
+			//System.out.println("Exception in RegistraionController in  saveRegister()");
 		}
 
 		return sJson;
@@ -146,14 +146,14 @@ public class RegistraionController {
 			register.setRegType(data.getString("regType"));
 			register.setRegName(data.getString("regName"));
 			register.setPassword(data.getString("password"));
-			// System.out.println("isupdateisupdateisupdateisupdate");
+			// //System.out.println("isupdateisupdateisupdateisupdate");
 			isupdate = objRegistrationService.updateRegister(register);
-			// System.out.println("isupdate" + isupdate);
+			// //System.out.println("isupdate" + isupdate);
 			if (isupdate)
 				sJson = objRegistrationService.getAllRegister();
-			// System.out.println("update: " + sJson);
+			// //System.out.println("update: " + sJson);
 		} catch (Exception ex) {
-			System.out.println("Exception in RegistraionController in  updatePurchaseInfo()");
+			//System.out.println("Exception in RegistraionController in  updatePurchaseInfo()");
 			ex.printStackTrace();
 		}
 		return sJson;
@@ -165,10 +165,10 @@ public class RegistraionController {
 		boolean isDelete = false;
 		String sJson = "";
 		isDelete = objRegistrationService.deleteRegister(id);
-		// System.out.println("1111111111" + isDelete);
+		// //System.out.println("1111111111" + isDelete);
 		if (isDelete) {
 			sJson = objRegistrationService.getAllRegister();
-			// System.out.println("Delete" + sJson);
+			// //System.out.println("Delete" + sJson);
 		}
 		return sJson;
 	}
@@ -176,7 +176,7 @@ public class RegistraionController {
 	public String resetPasswordHome(@ModelAttribute Register register, HttpServletResponse objResponce, HttpSession objSession,
 			HttpServletRequest objRequest) {
 
-		// System.out.println("From Prodcut Home");
+		// //System.out.println("From Prodcut Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = null;
 		try {
@@ -198,13 +198,13 @@ public class RegistraionController {
 		String sJson = "";
 		List<Register> lstRegister = null;
 		try {
-			System.out.println("in resetPassword......"+data);
+			//System.out.println("in resetPassword......"+data);
 			String sEmailOrMobileNo =data.getString("mobileNoEmail");
 			
-			System.out.println("sEmailOrMobileNo===="+sEmailOrMobileNo);
+			//System.out.println("sEmailOrMobileNo===="+sEmailOrMobileNo);
 			
 			lstRegister = objRegistrationService.getAllBillEmailAndMobileNo(sEmailOrMobileNo);
-			System.out.println("lstRegister==="+lstRegister.size());
+			//System.out.println("lstRegister==="+lstRegister.size());
 			if(lstRegister.size() >0){
 				for(int i=0;i<lstRegister.size();i++){
 					register = lstRegister.get(i);
@@ -214,7 +214,7 @@ public class RegistraionController {
 						//register.setMobileNo(data.getString("mobileNoEmail"));
 						
 						isUpdate = objRegistrationService.updateResetPassword(register);
-						System.out.println("isUpdateisUpdate"+isUpdate);
+						//System.out.println("isUpdateisUpdate"+isUpdate);
 						if(isUpdate){
 							JSONObject json = new JSONObject();
 							json.put("status", "ERROR");
@@ -233,7 +233,7 @@ public class RegistraionController {
 			}
 			
 		} catch (Exception ex) {
-			System.out.println("Exception in RegistraionController in  resetPassword()");
+			//System.out.println("Exception in RegistraionController in  resetPassword()");
 			ex.printStackTrace();
 		}
 		return sJson;

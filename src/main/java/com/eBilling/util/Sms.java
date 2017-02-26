@@ -49,14 +49,14 @@ public class Sms {
 			SenderID =prop.getProperty("smsSenderID");
 			smsUrl =prop.getProperty("smsUrl");
 			
-			// System.out.println("Username = " + Username);
-			// System.out.println("Password = " + Password);
-			// System.out.println("SenderID = " + SenderID);
-			// System.out.println("smsUrl = " + smsUrl);
+			// //System.out.println("Username = " + Username);
+			// //System.out.println("Password = " + Password);
+			// //System.out.println("SenderID = " + SenderID);
+			// //System.out.println("smsUrl = " + smsUrl);
 			
 			postData += "user=" + Username + "&password=" + Password + "&GSM=" +
 					MobileNo +"&sender=" + SenderID + "&SMSText=" + Message;
-			// System.out.println("postData============"+postData);
+			// //System.out.println("postData============"+postData);
 			
 			URL url = new URL(smsUrl);
 			HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
@@ -74,13 +74,13 @@ public class Sms {
 				retval += decodedString;
 			}
 			in.close();
-			// System.out.println("retval==="+retval);
+			// //System.out.println("retval==="+retval);
 			
 			bSentSms = true;
 			
 		}catch(Exception e){
 			e.printStackTrace();
-			System.out.println("Error While sending............."+e);
+			//System.out.println("Error While sending............."+e);
 		}
 		return bSentSms;
 	}

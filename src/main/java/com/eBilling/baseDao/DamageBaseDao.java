@@ -57,9 +57,9 @@ public class DamageBaseDao {
 					new Object[] { damage.getProductId(),damage.getQuantity(),damage.getDescription(),damage.getUpdatedOn(),damage.getUpdatedBy(),damage.getDamageId()
 							 
 							 });
-			System.out.println(sql);
-			System.out.println("update:::"+update);
-			//System.out.println(product.getProductId());
+			
+			//System.out.println("update:::"+update);
+			//"/gowthami/product.getProductId());
 			if (update > 0) {
 				isUpdate = true;
 			}
@@ -105,9 +105,9 @@ public class DamageBaseDao {
 		List<Damage> lstDamage = null;
 		try {
 			String sql = "SELECT damageId,d.productId,p.productName,quantity, description  from damage d,product p where d.productId=p.productId";
-			//System.out.println("sql:::"+sql);
+			////System.out.println("sql:::"+sql);
 			lstDamage = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Damage>(Damage.class));
-			//System.out.println("lstDamage:::"+lstDamage);
+			////System.out.println("lstDamage:::"+lstDamage);
 		} catch (Exception e) {
 			logger.error("Exception in getAllDamage in PopulateDaoImpl"+ e);
 			e.printStackTrace();
@@ -142,7 +142,7 @@ public class DamageBaseDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("getProduct=="+lstDamage);
+		//System.out.println("getProduct=="+lstDamage);
 
 		return lstDamage;
 	}
@@ -150,9 +150,9 @@ public class DamageBaseDao {
 		List<Damage> retlist = null;
 		try {
 			String sql = "SELECT *from damage where productId = ?";
-			System.out.println("query for getAllProductStockByProductId===="+sql);
+			//System.out.println("query for getAllProductStockByProductId===="+sql);
 			retlist = jdbcTemplate.query(sql, new Object[] {sProductId}, new BeanPropertyRowMapper<Damage>(Damage.class));
-			System.out.println("query for getAllProductStockByProductId===="+retlist.toString());
+			//System.out.println("query for getAllProductStockByProductId===="+retlist.toString());
 		} catch (Exception e) {
 			//objLogger.error("Exception in BillingDetailsBaseDao in getAllBillDetailsByBillNo()" + e);
 			e.printStackTrace();
@@ -169,7 +169,7 @@ public class DamageBaseDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("getProductId=="+lstDamage);
+		//System.out.println("getProductId=="+lstDamage);
 
 		return lstDamage;
 	}

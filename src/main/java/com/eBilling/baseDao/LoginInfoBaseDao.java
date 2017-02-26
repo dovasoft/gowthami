@@ -32,7 +32,7 @@ public class LoginInfoBaseDao {
 			update = jdbcTemplate.update(INSERT_SQL, new Object[] {
 					 loginInfo.getLoginId(),loginInfo.getName(),loginInfo.getPassword()
 					 });
-				System.out.println("update==="+update+"INSERT_SQL"+INSERT_SQL);
+				//System.out.println("update==="+update+"INSERT_SQL"+INSERT_SQL);
 			if (update > 0) {
 				isSave = true;
 			}
@@ -46,15 +46,15 @@ public class LoginInfoBaseDao {
 		List<Register> finalList = null;  
 		
 		if(org.apache.commons.validator.EmailValidator.getInstance().isValid(emailOrMobile) ){
-			System.out.println("emailOrMobile==="+emailOrMobile);
+			//System.out.println("emailOrMobile==="+emailOrMobile);
 			String sql= "SELECT * FROM register where email = ? ";
-			System.out.println("sql===="+sql);
+			//System.out.println("sql===="+sql);
 			finalList =	 jdbcTemplate.query(sql, new Object [] {StringUtils.trim(emailOrMobile)}, new BeanPropertyRowMapper<Register>(Register.class));
-			System.out.println("finalList===="+finalList);
+			//System.out.println("finalList===="+finalList);
 		}else{
 			String sql= "SELECT * FROM register where mobileNo = ? ";
 			finalList =	 jdbcTemplate.query(sql, new Object [] {StringUtils.trim(emailOrMobile)}, new BeanPropertyRowMapper<Register>(Register.class));
-			System.out.println("sql===="+sql);
+			//System.out.println("sql===="+sql);
 		   }
 		
 		if(finalList != null && finalList.size() == 1){

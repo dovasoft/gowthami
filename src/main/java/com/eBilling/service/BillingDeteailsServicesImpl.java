@@ -24,7 +24,7 @@ public class BillingDeteailsServicesImpl implements BillingDetailsService {
 			
 		} catch (Exception e) {
 			//objLogger.info("Exception in getAllBillInfoByBillNo()" + e);
-			System.out.println("Exception in getAllBillInfoByBillNo()");
+			//System.out.println("Exception in getAllBillInfoByBillNo()");
 		}
 		return billingDetails;
 	}
@@ -34,11 +34,11 @@ public class BillingDeteailsServicesImpl implements BillingDetailsService {
 		try {
 			isDelete = billingDetailsDao.deleteBillDetails(billId);;
 		} catch (Exception e) {
-			System.out.println("isDelete=="+isDelete);
+			//System.out.println("isDelete=="+isDelete);
 			//objLogger.error(e.getMessage());
 			isDelete = false;
 			//objLogger.fatal("error in deleteCategory in category service");
-			System.out.println("error in deleteBillDetailsCart in category service");
+			//System.out.println("error in deleteBillDetailsCart in category service");
 		}
 		return isDelete;
 	}

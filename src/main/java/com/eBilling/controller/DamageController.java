@@ -57,7 +57,7 @@ public class DamageController {
 	public String damageHome(@ModelAttribute Damage damage, HttpServletResponse objResponce, HttpSession objSession,
 			HttpServletRequest objRequest) {
 
-		 System.out.println("From Damage Home");
+		 //System.out.println("From Damage Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = null;
 		String allprod = null;
@@ -66,7 +66,7 @@ public class DamageController {
 			//allprod = objProductService.populateProducts();
 			sJson = damageServiceImpl.getAllDamage();
 			objRequest.setAttribute("allDamages", sJson);
-			System.out.println("sJson::::::"+sJson);
+			//System.out.println("sJson::::::"+sJson);
 			//objSession.setAttribute("allProducts", allprod);
 			objSession.setAttribute("tabActive", "damage");
 			
@@ -95,7 +95,7 @@ public class DamageController {
 			sProductId = data.getString("productId");
 			if(sProductId !=""){
 			boolean bStockAvailable = objProductStockService.checkStock( sProductId, data.getString("quantity"));
-			System.out.println("bStockAvailable===="+bStockAvailable);
+			//System.out.println("bStockAvailable===="+bStockAvailable);
 			if(!bStockAvailable){
 				JSONObject json = new JSONObject();
 				json.put("status", "ERRORS");
@@ -127,11 +127,11 @@ public class DamageController {
 					stockDetailsService.addStockDetails(sProductId,data.getString("quantity"),sDamageId,"Damage",sNewStock,sOldStock);
                // damageServiceImpl.updatedStock(productStock, data, lstProductstock);
                 
-			System.out.println("after req attr ");
+			//System.out.println("after req attr ");
 		} catch (Exception e) {
-			System.out.println("Exception in Product Controller in productSave()");
+			//System.out.println("Exception in Product Controller in productSave()");
 		}
-		System.out.println("it is working");
+		//System.out.println("it is working");
 		return sJson;
 	}
 
@@ -148,7 +148,7 @@ public class DamageController {
 			sProductId = data.getString("productId");
 			if(sProductId !=""){
 			boolean bStockAvailable = objProductStockService.checkStock( sProductId, data.getString("quantity"));
-			System.out.println("bStockAvailable===="+bStockAvailable);
+			//System.out.println("bStockAvailable===="+bStockAvailable);
 			if(!bStockAvailable){
 				JSONObject json = new JSONObject();
 				json.put("status", "ERRORS");
@@ -175,15 +175,15 @@ public class DamageController {
 			
 			
 			isupdate = damageServiceImpl.updateDamage(damage);
-			// System.out.println("isupdate" + isupdate);
+			// //System.out.println("isupdate" + isupdate);
 			
 			
 			if (isupdate)
 				sJson = damageServiceImpl.getAllDamage();
 				//sJson = productStockService.getAllProductStock();
-			// System.out.println("update: " + sJson);
+			// //System.out.println("update: " + sJson);
 		} catch (Exception ex) {
-			System.out.println("Exception in  updatePurchaseInfo()");
+			//System.out.println("Exception in  updatePurchaseInfo()");
 			ex.printStackTrace();
 		}
 		return sJson;

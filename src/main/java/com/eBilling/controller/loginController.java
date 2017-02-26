@@ -35,7 +35,7 @@ public class loginController {
 			@ModelAttribute LoginInfo loginInfo,
 			HttpSession session, HttpServletRequest objRequest)
 			throws IOException {
-		System.out.println("From loginHome Home");
+		//System.out.println("From loginHome Home");
 		objResponce.setCharacterEncoding("UTF-8");
 			String sJson = null;
 		try {
@@ -59,10 +59,10 @@ public class loginController {
 		Register register = null;
 		try {
 			
-			System.out.println("email, =="+email+"password"+password);
+			//System.out.println("email, =="+email+"password"+password);
 			if (StringUtils.isNotBlank(email) && StringUtils.isNotBlank(password)) {
 				 register  = loginService.validateUser(email, password);
-				 System.out.println("registerModel: "+register);
+				 //System.out.println("registerModel: "+register);
 				if(register != null){
 					HttpSession session = objRequest.getSession(true);
 					ObjectMapper objMapper = new ObjectMapper();
@@ -71,7 +71,7 @@ public class loginController {
 					return userInfo;
 				}else {
 					
-					System.out.println("Invalid Username and Pwd");
+					//System.out.println("Invalid Username and Pwd");
 					return "Invalid Username and Pwd";
 				}
 				} 

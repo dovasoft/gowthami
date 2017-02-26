@@ -6,10 +6,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.eBilling.baseModel.BillingInfo;
 import com.eBilling.baseModel.BillingInfoCart;
 import com.eBilling.dao.BillingInfoCartDao;
-import com.eBilling.model.Product;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
@@ -32,7 +30,7 @@ public class UnBillCartServiceImpl implements UnBillCartService {
 			}
 		} catch (Exception e) {
 			logger.info("Exception in unBillCartServiceImpl in getAllBillInfoCart()" + e);
-			System.out.println("Exception in unBillCartServiceImpl in  getAllBillInfoCart()");
+			//System.out.println("Exception in unBillCartServiceImpl in  getAllBillInfoCart()");
 		}
 		return sJson;
 	}
@@ -49,7 +47,7 @@ public class UnBillCartServiceImpl implements UnBillCartService {
 			}
 		} catch (Exception e) {
 			logger.info("Exception in unBillCartServiceImpl in unBillInfoCart()" + e);
-			System.out.println("Exception in unBillCartServiceImpl in  unBillInfoCart()");
+			//System.out.println("Exception in unBillCartServiceImpl in  unBillInfoCart()");
 		}
 		return sJson;
 	}

@@ -41,7 +41,7 @@ public class SendSmsController {
 	public String sendSmsHome(@ModelAttribute Register register, HttpServletResponse objResponce, HttpSession objSession,
 			HttpServletRequest objRequest) {
 
-		 System.out.println("From sendSmsHome");
+		 //System.out.println("From sendSmsHome");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = null;
 		try {
@@ -66,9 +66,9 @@ public class SendSmsController {
 		String sOtp = null;
 		try {
 			String sMessage=data.getString("message");
-			System.out.println("sMessage"+sMessage);
+			//System.out.println("sMessage"+sMessage);
 			isInsert=smsservice.smsToPurchase(sMessage);
-			System.out.println("sJson"+isInsert);
+			//System.out.println("sJson"+isInsert);
 			if(isInsert){
 				//JSONObject json=new JSONObject();
 				data.put("status", "ERRORMASSAGE");
@@ -77,7 +77,7 @@ public class SendSmsController {
 				return sJson;
 			}
 		} catch (Exception e) {
-			 System.out.println("Exception in SendSmsController in  saveRegister()");
+			 //System.out.println("Exception in SendSmsController in  saveRegister()");
 		}
 
 		return sJson;

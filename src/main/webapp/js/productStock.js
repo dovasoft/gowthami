@@ -31,7 +31,7 @@ function showProductData(response){
 						+ catObj.stockId
 						+ "' onclick='deleteProductStock(this.id)' id='delId' class='delRec' href='#'>Delete</a>"
 						+ '</li>'
-						+ "<li class='ten-box' style='width:31%;' last><a id='"+catObj.productId+"' onclick='stockDetails(this.id);return false;'><img src='./images/icon2.jpg'></a>"
+						+ "<li class='ten-box' style='width:31%;' last><a id='"+catObj.productId+"' ><img src='./images/icon2.jpg'></a>"
 						+"</li>"
 						+ "</li>"
 						+"</ul>";
@@ -179,7 +179,13 @@ function productStock() {
 			    $("#productId").attr("placeholder","Please Enter productId");
 			    $('#productId').addClass('your-class');
 			    return false;
-			    }
+			    }else if($('#newStock').val().length == 0 ) {
+				    $('#newStock').css('color','red');
+				    $("#newStock").css("border-color","red");
+				    $("#newStock").attr("placeholder","Please Enter NewStock");
+				    $('#newStock').addClass('your-class');
+				    return false;
+				    }
 		   
 		else if($("#stockId").val() != "" ){
 			updateProductStock();

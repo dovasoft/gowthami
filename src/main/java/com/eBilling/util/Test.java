@@ -10,7 +10,7 @@ public class Test {
 		    x = x + 1;
 		    String randomPIN = (x + "") + ( ((int)(Math.random()*1000)) + "" );
 		    //return randomPIN;
-		System.out.println("randomPIN==="+randomPIN);
+		//System.out.println("randomPIN==="+randomPIN);
 		}
 
 	

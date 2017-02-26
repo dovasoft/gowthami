@@ -39,7 +39,7 @@ public class DamageServiceImpl implements DamageService{
 			}
 		} catch (Exception e) {
 			objLogger.info("Exception in DamageServiceImpl in populateProducts()" + e);
-			System.out.println("Exception in Damage Controller in  getAllProducts()");
+			//System.out.println("Exception in Damage Controller in  getAllProducts()");
 		}
 		return sJson;
 	}
@@ -66,7 +66,7 @@ public class DamageServiceImpl implements DamageService{
 			//isSave = productDao.updateProduct(product);
 		}catch(Exception e){
 			objLogger.error("Exception in BillingDetatilsCartServiceImpl in getAllbillDeteailsCart() "+e);
-			System.out.println("erroor in updateDamage() "+e);
+			//System.out.println("erroor in updateDamage() "+e);
 		}finally{
 			
 		}
@@ -112,7 +112,7 @@ public class DamageServiceImpl implements DamageService{
 			}
 		} catch (Exception e) {
 			objLogger.info("Exception in RegistrationServiceImpl in populateProducts()" + e);
-			System.out.println("Exception getAllDamage()"+e);
+			//System.out.println("Exception getAllDamage()"+e);
 		}
 		return sJson;
 	}
@@ -212,10 +212,10 @@ public class DamageServiceImpl implements DamageService{
 			for (int i = 0; i < lstDamage.size(); i++) {
 				Damage existDamage = lstDamage.get(i);
 				if (existDamage.getProductId().equals(sProductId)) {
-					//System.out.println("in----------updateProductQuantity---------------sNewProductId=="+sNewProductId+"--------------existBillingDetailsCart.getProductId()==="+existBillingDetailsCart.getProductId());
+					////System.out.println("in----------updateProductQuantity---------------sNewProductId=="+sNewProductId+"--------------existBillingDetailsCart.getProductId()==="+existBillingDetailsCart.getProductId());
 					int existQty = Integer.parseInt(existDamage.getQuantity());
 					int newQty = Integer.parseInt(damage.getQuantity());
-					//System.out.println("existQty=="+existQty+"--------------newQty==="+newQty);
+					////System.out.println("existQty=="+existQty+"--------------newQty==="+newQty);
 					damage.setQuantity(String.valueOf(existQty + newQty));
 					damage.setDamageId(existDamage.getDamageId());
 					damage.setProductId(existDamage.getProductId());
@@ -230,7 +230,7 @@ public class DamageServiceImpl implements DamageService{
 
 		} catch (Exception e) {
 
-			System.out.println("Exception in updateProductQuantity in  calculateTotal()");
+			//System.out.println("Exception in updateProductQuantity in  calculateTotal()");
 		}
 		return lstDamage;
 	}
@@ -248,7 +248,7 @@ public class DamageServiceImpl implements DamageService{
 			 for(int i=0;i<lstDamage.size();i++){
 				 existdamage= lstDamage.get(i);
 				 if(existdamage.getProductId().equals(sProductId)){
-					// System.out.println("in----------checkInCart---------------sNewProductId=="+sNewProductId+"--------------existBillingDetailsCart.getProductId()==="+existBillingDetailsCart.getProductId());
+					// //System.out.println("in----------checkInCart---------------sNewProductId=="+sNewProductId+"--------------existBillingDetailsCart.getProductId()==="+existBillingDetailsCart.getProductId());
 					 isExist = true;
 					 break;
 				 }

@@ -8,7 +8,10 @@
 
 .default-class::-webkit-input-placeholder {
 	color: red;
+	
+	
 }
+
 </style>
 </head>
 <body>
@@ -23,24 +26,6 @@ var lstOrders ='${allProducts}';
 $(document).ready(function() {
 	
 	showProductData(JSON.parse(lstOrders));
-	
-	
-	/*  $('#productName').keypress(function (e) {
-        var regex = new RegExp("^[a-zA-Z ]+$");
-        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-        if (regex.test(str)) {
-            return true;
-        }
-        else
-        {
-        e.preventDefault();
-        //alert('Please Enter Alphabate');
-        $("#unc").text('Please Enter Alphabates');
-    	$("#unc").show();
-       	$("#unc").fadeOut(2000);
-        return false;
-        }
-    });  */
 	
 	$('#mrp').keypress(function (e) {
         var regex = new RegExp("^\d*[0-9](|.\d*[0-9]|,\d*[0-9])?$");
@@ -84,13 +69,13 @@ $(document).ready(function() {
 						</div> 
 						<div class="block-searchbill-input">
 							<label>MRP</label>
-							<input type="text" name="prate" id="mrp"  placeholder="Enter MRP" tabindex="3" />
+							<input type="text" name="prate" id="mrp"  placeholder="ENTER MRP" tabindex="3" />
 						</div>
 					</div>
 					<div class="block-footer">
 						<aside class="block-footer-left sucessfully" id="unc" style="display: none">Save Sucessfully</aside>
 						<aside class="block-footer-right">
-							 <input class="btn-cancel" value="Cancel"  name="Cancel" type="button" onclick="productDataClear();" >
+							 <input class="btn-cancel" value="Clear"  name="Clear" type="button" onclick="productDataClear();" >
                     <input class="btn-save" value="Save" id="saveIds" type="button" onClick="productRegister();">
 						</aside>
 					</div>
@@ -137,7 +122,7 @@ $(document).ready(function() {
 				<div class="block-footer">
 					<aside class="block-footer-left"><exptotal></exptotal></aside>
 					<aside class="block-footer-right">
-						<!-- <input class="btn-cancel" name="" value="Cancel" type="button">
+						<!-- <input class="btn-cancel" name="" value="Clear" type="button">
 						<input class="btn-save" name="" value="Save" type="submit"> -->
 					</aside>
 				</div>

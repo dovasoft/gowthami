@@ -61,7 +61,7 @@ public class StockDetailsServiceImpl implements StockDetailsService{
 				
 			} catch (Exception e) {
 				//objLogger.info("Exception in getAllProductStockByProductId()" + e);
-				System.out.println("Exception in getAllProductStockByProductId()");
+				//System.out.println("Exception in getAllProductStockByProductId()");
 			}
 			return lstStockDetails;
 		}
@@ -105,7 +105,7 @@ public class StockDetailsServiceImpl implements StockDetailsService{
 				
 			} catch (Exception e) {
 				//objLogger.info("Exception in getAllProductStockByProductId()" + e);
-				System.out.println("Exception in getAllProductStockByProductId()");
+				//System.out.println("Exception in getAllProductStockByProductId()");
 			}
 			return productStockDetails;
 		}

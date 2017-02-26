@@ -31,12 +31,12 @@ public class SearchBillController {
 			@ModelAttribute("productCmd") BillingInfo billingInfo,
 			HttpSession session, HttpServletRequest objRequest)
 			throws IOException {
-		System.out.println("From searchBill Home");
+		//System.out.println("From searchBill Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = "";
 		try {
 			sJson = objBillingInfoService.getAllBillInfo(billingInfo);
-			System.out.println("sJson==============================" + sJson);
+			//System.out.println("sJson==============================" + sJson);
 			session.setAttribute("allSearchBill", sJson);
 			session.setAttribute("tabActive", "searchBill");
 			// getAllProducts(objRequest);

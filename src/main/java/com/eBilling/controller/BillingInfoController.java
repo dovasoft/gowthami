@@ -35,7 +35,7 @@ public class BillingInfoController {
 	
 	@RequestMapping(value = "/billingInformation")
 public String billingInfoHome(HttpServletResponse objResponce, @ModelAttribute("productCmd") Product product,  HttpSession session,HttpServletRequest objRequest) throws IOException{
-		System.out.println("From Prodcut Home");
+		//System.out.println("From Prodcut Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		try {
 			//getAllProducts(objRequest);
@@ -53,7 +53,7 @@ public String billingInfoHome(HttpServletResponse objResponce, @ModelAttribute("
 		 //JSONArray jsonArray=new JSONArray();
 			register.setRegName(req.getParameter("regName"));
 			 register.setUserType( req.getParameter("userType"));
-		System.out.println("saveBillInfo");
+		//System.out.println("saveBillInfo");
 		billingInfoModel.setBillId(data.getString("billId"));
 		billingInfoModel.setBillNo(data.getString("billNo"));
 		billingInfoModel.setBillDate(data.getString("billDate"));
@@ -76,7 +76,7 @@ public String billingInfoHome(HttpServletResponse objResponce, @ModelAttribute("
 		
 		    //product.setUpdatedDate(data.getString("updatedDate"));
 			 isInsert=billingInfoDao.saveBillInfo(billingInfoModel);
-			System.out.println("hi,,,,,,");
+			//System.out.println("hi,,,,,,");
 		return "succ";
 }
 	@RequestMapping(value = "/updateBillInfo")
@@ -112,10 +112,10 @@ public String billingInfoHome(HttpServletResponse objResponce, @ModelAttribute("
 					objectMapper = new ObjectMapper(); 
 					  sJson =objectMapper.writeValueAsString(listOrderBeans);
 					  objRequest.setAttribute("allOrders1", sJson);
-					 // System.out.println(sJson); 
+					 // "/gowthami/sJson); 
 				}
 			 
-			System.out.println("hi,,,,,,");
+			//System.out.println("hi,,,,,,");
 		}catch(Exception ex){
 			
 		}
@@ -130,7 +130,7 @@ public String billingInfoHome(HttpServletResponse objResponce, @ModelAttribute("
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(list);
 		req.setAttribute("pList", json);
-			System.out.println("hi,,,,,,");
+			//System.out.println("hi,,,,,,");
 			return json;
 		
 }*/
@@ -141,11 +141,11 @@ public String billingInfoHome(HttpServletResponse objResponce, @ModelAttribute("
 		List<Product> lstProductModel = null;
 		try {
 			lstProductModel = productDao.getAllProduct();
-			System.out.println("listOrderBeans= " + lstProductModel);
+			//System.out.println("listOrderBeans= " + lstProductModel);
 			if (lstProductModel != null && lstProductModel.size() > 0) {
 				objectMapper = new ObjectMapper();
 				sJson = objectMapper.writeValueAsString(lstProductModel);
-				System.out.println("in productHome sJson==" + sJson);
+				//System.out.println("in productHome sJson==" + sJson);
 				if (sJson != null && sJson.length() > 0)
 					objRequest.setAttribute("allProducts", sJson);
 			}
@@ -178,7 +178,7 @@ public String billingInfoHome(HttpServletResponse objResponce, @ModelAttribute("
 			lstProductSearch = objPopulateService.categorySelect(productName);
 			ObjectMapper objectMapper = new ObjectMapper();
 			sJson = objectMapper.writeValueAsString(lstProductSearch);
-			System.out.println("populate data== "+lstProductSearch);
+			//System.out.println("populate data== "+lstProductSearch);
 		} catch (Exception e) {
 			
 		} finally {

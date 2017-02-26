@@ -32,7 +32,7 @@ public class StatusServiceImpl implements StatusService
 			}
 		} catch (Exception e) {
 			objLogger.info("Exception in ProductPopulateServiceImpl in populateProducts()" + e);
-			System.out.println("Exception in Product Controller in  getAllProducts()");
+			//System.out.println("Exception in Product Controller in  getAllProducts()");
 		}
 		return sJson;
 	}

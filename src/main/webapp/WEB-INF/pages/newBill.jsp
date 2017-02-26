@@ -23,6 +23,7 @@
 
 <!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
 		 <script type="text/javascript" src="js/newBill.js"></script>
+		  <script type="text/javascript" src="js/commonUtils.js"></script>
 		<script type="text/javascript">
 		var billId = '${sessionScope.BillId}';
 		var printBill= '${sessionScope.printInfo}';
@@ -69,7 +70,7 @@
 				changeMonth : true,
 				changeYear : true,
 				showButtonPanel : false,
-				dateFormat : 'yy-mm-dd'
+				dateFormat : 'dd-mm-yy'
 			});
 		});
 		$(function() {
@@ -224,9 +225,16 @@
 		function customerType() {
 			var custType =$("#customerType").val();
 			if(custType == "oldCustmer"){
+				$("#purchaserName").val("");
 				$("#name").show();
+				
 				$("#purchaserName").hide();
 			}else{
+				 $('#phone').val("");
+		  		 $('#address').val("");
+		  		$('#name').val("");
+		  		$('#eMail').val("");
+		  		$('#tinNo').val("");
 				$("#name").hide();
 				$("#purchaserName").show();
 			}
@@ -278,8 +286,8 @@
 					<div class="block-footer">
 						<aside class="block-footer-left sucessfully"  id="unc" style="display: none">Sucessfully Message</aside>
 						<aside class="block-footer-right">
-							<input class="btn-cancel" name="" value="Cancel" type="button" onclick="cancelBill(id);">
-							<input class="btn-save" value="Save" id="saveIds" type="button" onClick="newBill();">
+							<input class="btn-cancel" name="" value="Clear" type="button" onclick="dataClear();">
+							<input class="btn-save" value="Add" id="saveIds" type="button" onClick="newBill();">
 						</aside>
 					</div>
 				</form:form>
@@ -370,8 +378,8 @@
                                                          <div class="block-input ">
                                                                 <label>Customer Type</label>
                                                                 <select id="customerType" name="customerType" onchange="customerType();">
-                                                                    <option value="oldCustmer" selected="selected">Old Custmer</option>
-                                                                    <option value="newCustmer">New Custmer</option>
+                                                                    <option value="oldCustmer" selected="selected">Old Customer</option>
+                                                                    <option value="newCustmer">New Customer</option>
                                                                 </select> 
                                                             </div>
                                                         <!-- <div class="block-input"  style="margin-right: 42px;">
@@ -403,12 +411,11 @@
                                                                 <input type="text" name="phone" id="phone">                 
                                                             </div>  
                                                             <div class="block-input">
-                                                                <label>Discount</label>
-                                                                <input  type="text" name="discount" id="discount" onchange="netAmount()">
+                                                                <label><b>Discount</b></label>
+                                                                <input  type="text" name="discount" id="discount" onchange="showCurrencey();">
                                                             </div>
                                                         </div>
                                                         <div class="block-searchbill">
-                                                        
                                                             <div class="block-input">
                                                                 <label>Address</label>
                                                                 <textarea name="address" id="address" rows="3"></textarea>                  
@@ -417,16 +424,37 @@
                                                                 <label>Tin No</label>
                                                                 <input type="text" name="tinNo" id="tinNo">
                                                             </div>
-                                                            <div class="block-input last">
-                                                                <label>Net Amount</label>
-                                                                <input disabled="disabled" type="text" name="netAmount" id="netAmount">
+                                                            
+                                                            <div class="block-input last" style="margin-left: 247px; margin-top: 5px;">
+                                                            <label><b>Advance</b></label>
+                                                            <input type="text" id="advance" onchange="showCurrencey();">
                                                             </div>
+                                                                
                                                         </div>
-                                                        <div class="block-searchbill">
-                                                         <button style="margin-bottom: 138px;margin-right: 8px;margin-left: -51px;">More info</button>
-                                                         <div id="moreInfoId" style="display:none;">
-                                                         <p>This is content show/hide</p>
-                                                         <div class="block-searchbill" id="labelId" >
+                                                        <div class="block-searchbill" >
+                                                           <div class="block-input" id="wordsAmount" style="margin-left: 1px;    width: 756px;margin-top: 3px;color: red;font-size: 15px;text-align: center;font-weight: bold;">
+                                                        </div>
+                                                        <div class="block-input " style="margin-left: -28px;">
+																      <label><b>Net Amount</b></label>
+                                                                <input disabled="disabled" type="hidden" name="netAmount" id="netAmount" onchange=" test();">
+                                                                <div id="showAmount" style="margin-top: 16px;margin-top: -10px;font-size: 33px;color: green;"></div>
+                                                         </div> 
+                                                         </div>
+                                                        <div class="block-searchbill"  >
+                                                        
+                                                            <div class="block-input" >
+                                                                <label>Show Our Tin NO</label>
+                                                                <input type="checkbox" name="showPan" value="1" id="showPan"  style="margin-left:-88px;">                
+                                                            </div>                                                        
+                                                           
+                                                        </div>
+                                                        <div class="block-searchbill" >
+																<div><button >More info</button></div>                                                         
+                                                         </div>
+                                                         
+                                                         
+                                                          <div id="moreInfoId" style="margin-top: 28px; display: none;" >
+                                                         <div class="block-searchbill" id="labelId"  >
                                                         
                                                             <div class="block-input">
                                                                 <label>Order No</label>
@@ -442,7 +470,7 @@
                                                             </div>
                                                         </div>
                                                         
-                                                        <div class="block-searchbill" id="labelId1">
+                                                        <div class="block-searchbill" id="labelId1" >
                                                         
                                                             <div class="block-input">
                                                                 <label>LR No</label>
@@ -458,7 +486,7 @@
                                                             </div>
                                                         </div>
                                                         
-                                                        <div class="block-searchbill" id="labelId2" >
+                                                        <div class="block-searchbill" id="labelId2"  >
                                                         
                                                             <div class="block-input">
                                                                 <label>Pack Slip No</label>
@@ -473,7 +501,7 @@
                                                                 <input type="text" name="dispatchedBy" id="dispatchedBy"> 
                                                             </div>
                                                         </div>
-                                                        <div class="block-searchbill" id="labelId3">
+                                                        <div class="block-searchbill" id="labelId3"  >
                                                         
                                                             <div class="block-input">
                                                                 <label>Terms of Payment</label>
@@ -493,8 +521,8 @@
 					<aside class="block-footer-left"><exptotal></exptotal></aside>
 					<aside class="block-footer-right">
 					<input class="btn-cancel" name="" value="Cancel" type="button" onclick="cancelBill(this.id)">
-						<input class="btn-save" name="" value="Cart" type="button" onclick="saveInfoCart();">
-						<input class="btn-save" name="" value="Bill" id="printBill" type="submit" onclick="updateBillInfoCart();" style=" margin-right: 118px; margin-top: -25px;">
+						<input class="btn-save" name="" value="Consignment" type="button" onclick="saveInfoCart();" style="    margin-right: 71px;margin-top: -25px;">>
+						<input class="btn-save" name="" value="Bill" id="printBill" type="submit" onclick="updateBillInfoCart();" style="margin-right: 177px;margin-top: -26px;">
 					</aside>
 				</div>
 			</div>

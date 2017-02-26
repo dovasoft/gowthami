@@ -41,7 +41,7 @@ public class UpLoadController {
 			@ModelAttribute LoginInfo loginInfo,
 			HttpSession session, HttpServletRequest objRequest)
 			throws IOException {
-		System.out.println("From uploadHome Home");
+		//System.out.println("From uploadHome Home");
 		objResponce.setCharacterEncoding("UTF-8");
 			String sJson = null;
 		try {
@@ -64,16 +64,16 @@ public class UpLoadController {
 		ProductStock productStock =null;
 		try{			
 			
-		System.out.println("inside the controller");
+		//System.out.println("inside the controller");
 		
 		String s = request.getParameter("jso");
 		JSONArray array = new JSONArray(s);
-		System.out.println("arrayLength"+array.length());
+		//System.out.println("arrayLength"+array.length());
 		
 		for (int i = 0; i < array.length(); i++) {
 			JSONObject a = (JSONObject) array.get(i);
 			
-			System.out.println("productName===="+a.getString("productName"));
+			//System.out.println("productName===="+a.getString("productName"));
 			
 			String sProductName = a.getString("productName");
 			lstProductModel = productPopulateService.getProductByName(sProductName);
@@ -126,15 +126,15 @@ public class UpLoadController {
 		
 		try{
 			
-		System.out.println("inside the importPurchase controller");
+		//System.out.println("inside the importPurchase controller");
 		String s = request.getParameter("jso");
 
 		JSONArray array = new JSONArray(s);
-		System.out.println("arrayLength"+array.length());
+		//System.out.println("arrayLength"+array.length());
 		for (int i = 0; i < array.length(); i++) {
 			
 			JSONObject a = (JSONObject) array.get(i);
-			System.out.println("name===="+a.getString("name"));
+			//System.out.println("name===="+a.getString("name"));
 			
 			String sPurchaseName = a.getString("name");
 			 lstPurchaseName = purchaseInfoService.getPurchaseByName(sPurchaseName);

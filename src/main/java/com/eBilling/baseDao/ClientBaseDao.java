@@ -37,14 +37,14 @@ public class ClientBaseDao {
 	public boolean updateClient(Client client) {
 		boolean isUpdate = false;
 		try {
-			System.out.println("clientUpadate=="+client);
+			//System.out.println("clientUpadate=="+client);
 			String sql = "UPDATE clientInfo  set companyName = ?, address = ?, clientEmail = ?, contactPerson= ?, contactNo= ?,tinNo= ?,uploadLogo= ?,smsSuport= ?,emailSupport= ?,createdDate= ?,smsUrl =?,smsUserName =?,smsPassword =? where clientId = ? ";
 
 			int update = jdbcTemplate.update(
 					sql,
 					new Object[] {client.getCompanyName(),client.getAddress(),client.getClientEmail(),client.getContactPerson(),client.getContactNo(),client.getTinNo(),client.getUploadLogo(),client.getSmsSuport(),client.getEmailSupport(),client.getCreatedDate(),client.getSmsUrl(),client.getSmsUserName(),client.getSmsPassword(),client.getClientId() });
-			System.out.println("update111==="+update);
-			System.out.println(sql);
+			//System.out.println("update111==="+update);
+			
 			if (update > 0) {
 				isUpdate = true;
 			}
@@ -61,7 +61,7 @@ public class ClientBaseDao {
 		try {
 			String sql = "DELETE FROM clientInfo WHERE clientId=?";
 			int delete = jdbcTemplate.update(sql, new Object[] { clientId });
-			System.out.println("delete row"+delete);
+			//System.out.println("delete row"+delete);
 			if (delete > 0) {
 				isDelete = true;
 			}

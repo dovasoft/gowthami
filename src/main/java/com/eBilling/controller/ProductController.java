@@ -39,7 +39,7 @@ public class ProductController {
 	@RequestMapping(value = "/productHome")
 	public String productHome(HttpServletResponse objResponce, HttpSession objSession, HttpServletRequest objRequest)
 			throws IOException {
-		System.out.println("From Prodcut Home");
+		//System.out.println("From Prodcut Home");
 		objResponce.setCharacterEncoding("UTF-8");
 		String sJson = null;
 		try {
@@ -79,9 +79,9 @@ public class ProductController {
 				json.put("message", "Product Already Exist");
 				sJson = json.toString();
 			}
-			System.out.println("after req attr ");
+			//System.out.println("after req attr ");
 		} catch (Exception e) {
-			System.out.println("Exception in Product Controller in productSave()");
+			//System.out.println("Exception in Product Controller in productSave()");
 		}
 		return sJson;
 	}
@@ -103,7 +103,7 @@ public class ProductController {
 					if (productExist.getProductId().equals(data.getString("productId"))) {
 						toUpdate = true;
 					} else {
-						System.out.println("----else---");
+						//System.out.println("----else---");
 						JSONObject json = new JSONObject();
 						json.put("status", "ERROR");
 						json.put("message", "Product Already Exist");
@@ -115,14 +115,14 @@ public class ProductController {
 				toUpdate = true;
 			}
 			if (toUpdate) {
-				System.out.println("productUpdate");
+				//System.out.println("productUpdate");
 				product.setProductId(data.getString("productId"));
 				product.setProductType(data.getString("productType"));
 				product.setMrp(data.getString("mrp"));
 				product.setProductName(data.getString("productName"));
 				product.setUpdatedBy(CommonUtils.getDate());
 				product.setUpdatedDate(CommonUtils.getDate());
-				System.out.println("product values==" + product);
+				//System.out.println("product values==" + product);
 
 				isUpdate = objPopulateService.updateProduct(product);
 				if (isUpdate) {
@@ -131,7 +131,7 @@ public class ProductController {
 			}
 
 		} catch (Exception ex) {
-			System.out.println("Exception in Product Controller in  productUpdate()");
+			//System.out.println("Exception in Product Controller in  productUpdate()");
 		}
 		return sJson;
 	}

@@ -25,7 +25,6 @@ function importCsv(){
 		}
 		var products = [];
 		csvval=event.target.result.split("\n");
-		alert('csvval.length---'+csvval.length);
 		 console.log("csvval.length"+csvval[0]);
 		// if(csvval[0].split(",").length == 3){
 		for(var i=1;i<csvval.length;i++) {
@@ -88,7 +87,6 @@ function importPurchase(){
 		}
 		var products = [];
 		csvval=event.target.result.split("\n");
-		alert('csvval.length---'+csvval.length);
 		for(var i=1;i<csvval.length;i++) {
 			var csvvalue = csvval[i].split(",");
 			var name = $.trim(csvvalue[0]);

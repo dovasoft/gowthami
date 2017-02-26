@@ -67,7 +67,7 @@ public String getAllClient() {
 		}
 	} catch (Exception e) {
 		logger.info("Exception in ClientServiceImpl in getAllClient()" + e);
-		//System.out.println("Exception in Register Controller in  getAllProducts()");
+		////System.out.println("Exception in Register Controller in  getAllProducts()");
 	}
 	return sJson;
 }
